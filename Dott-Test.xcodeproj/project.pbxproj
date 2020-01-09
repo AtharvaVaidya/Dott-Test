@@ -23,6 +23,9 @@
 		EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1123C71640008B1193 /* APIServiceConfig.swift */; };
 		EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1323C71655008B1193 /* NetworkingAliases.swift */; };
 		EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1523C716E9008B1193 /* APIEndPoint.swift */; };
+		EC123E1823C720AD008B1193 /* RestaurantsMapVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */; };
+		EC123E1A23C722C9008B1193 /* APICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1923C722C9008B1193 /* APICredentials.swift */; };
+		EC123E1C23C7263C008B1193 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1B23C7263C008B1193 /* UserDefaultsWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		EC123E1123C71640008B1193 /* APIServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceConfig.swift; sourceTree = "<group>"; };
 		EC123E1323C71655008B1193 /* NetworkingAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAliases.swift; sourceTree = "<group>"; };
 		EC123E1523C716E9008B1193 /* APIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoint.swift; sourceTree = "<group>"; };
+		EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapVM.swift; sourceTree = "<group>"; };
+		EC123E1923C722C9008B1193 /* APICredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICredentials.swift; sourceTree = "<group>"; };
+		EC123E1B23C7263C008B1193 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +123,10 @@
 			children = (
 				EC123DD523C7107F008B1193 /* AppDelegate.swift */,
 				EC123DD723C7107F008B1193 /* SceneDelegate.swift */,
+				EC123E1D23C72642008B1193 /* Model */,
 				EC123E1023C71612008B1193 /* Network */,
 				EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */,
+				EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */,
 				EC123DDB23C7107F008B1193 /* Main.storyboard */,
 				EC123DE123C71081008B1193 /* Assets.xcassets */,
 				EC123DE323C71081008B1193 /* LaunchScreen.storyboard */,
@@ -151,6 +159,7 @@
 			children = (
 				EC123E1323C71655008B1193 /* NetworkingAliases.swift */,
 				EC123E0823C712DE008B1193 /* GetVenuesResponse.swift */,
+				EC123E1923C722C9008B1193 /* APICredentials.swift */,
 				EC123E0A23C71552008B1193 /* APIRequest.swift */,
 				EC123E0C23C715C2008B1193 /* APIClient.swift */,
 				EC123E1123C71640008B1193 /* APIServiceConfig.swift */,
@@ -158,6 +167,14 @@
 				EC123E0E23C715EF008B1193 /* NetworkError.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		EC123E1D23C72642008B1193 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC123E1B23C7263C008B1193 /* UserDefaultsWrapper.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,14 +308,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC123E1C23C7263C008B1193 /* UserDefaultsWrapper.swift in Sources */,
 				EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */,
 				EC123DE023C7107F008B1193 /* Dott_Test.xcdatamodeld in Sources */,
 				EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */,
 				EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */,
 				EC123E0D23C715C2008B1193 /* APIClient.swift in Sources */,
 				EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */,
+				EC123E1823C720AD008B1193 /* RestaurantsMapVM.swift in Sources */,
 				EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */,
 				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
+				EC123E1A23C722C9008B1193 /* APICredentials.swift in Sources */,
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
 				EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */,
 				EC123E0923C712DE008B1193 /* GetVenuesResponse.swift in Sources */,
