@@ -16,6 +16,8 @@
 		EC123DE523C71081008B1193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC123DE323C71081008B1193 /* LaunchScreen.storyboard */; };
 		EC123DF023C71081008B1193 /* Dott_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DEF23C71081008B1193 /* Dott_TestTests.swift */; };
 		EC123DFB23C71081008B1193 /* Dott_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */; };
+		EC123E0923C712DE008B1193 /* GetVenuesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0823C712DE008B1193 /* GetVenuesResponse.swift */; };
+		EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0A23C71552008B1193 /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dott-TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dott_TestUITests.swift; sourceTree = "<group>"; };
 		EC123DFC23C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC123E0823C712DE008B1193 /* GetVenuesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenuesResponse.swift; sourceTree = "<group>"; };
+		EC123E0A23C71552008B1193 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +107,9 @@
 			children = (
 				EC123DD523C7107F008B1193 /* AppDelegate.swift */,
 				EC123DD723C7107F008B1193 /* SceneDelegate.swift */,
+				EC123E0823C712DE008B1193 /* GetVenuesResponse.swift */,
 				EC123DD923C7107F008B1193 /* ViewController.swift */,
+				EC123E0A23C71552008B1193 /* APIRequest.swift */,
 				EC123DDB23C7107F008B1193 /* Main.storyboard */,
 				EC123DE123C71081008B1193 /* Assets.xcassets */,
 				EC123DE323C71081008B1193 /* LaunchScreen.storyboard */,
@@ -266,6 +272,8 @@
 				EC123DDA23C7107F008B1193 /* ViewController.swift in Sources */,
 				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
+				EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */,
+				EC123E0923C712DE008B1193 /* GetVenuesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y7969DNQN4;
 				INFOPLIST_FILE = "Dott-Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y7969DNQN4;
 				INFOPLIST_FILE = "Dott-Test/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
