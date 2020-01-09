@@ -20,6 +20,7 @@ class ExploreVenuesRequest: FSAPIRequest {
     private let longitude: Float
     
     let section: Section?
+    let radius: Int
     
     private enum QueryItems: String {
         case ll = "ll"
@@ -28,6 +29,7 @@ class ExploreVenuesRequest: FSAPIRequest {
         ///v is the version in the format YYYYMMDD
         case v = "v"
         case section = "section"
+        case radius = "radius"
     }
     
     enum Section: String {
@@ -42,9 +44,14 @@ class ExploreVenuesRequest: FSAPIRequest {
         case nextVenues
     }
     
-    init(serviceConfig: APIServiceConfig, section: Section, latitude: Float, longitude: Float) {
+    init(serviceConfig: APIServiceConfig,
+         section: Section,
+         radius: Int,
+         latitude: Float,
+         longitude: Float) {
         self.serviceConfig = serviceConfig
         self.section = section
+        self.radius = radius
         self.latitude = latitude
         self.longitude = longitude
     }
@@ -61,8 +68,13 @@ class ExploreVenuesRequest: FSAPIRequest {
         let clientIDItem = URLQueryItem(name: QueryItems.clientID.rawValue, value: apiKey)
         let clientSecretItem = URLQueryItem(name: QueryItems.clientSecret.rawValue, value: apiSecret)
         let versionItem = URLQueryItem(name: QueryItems.v.rawValue, value: version)
+        let radiusItem = URLQueryItem(name: QueryItems.radius.rawValue, value: "\(radius)")
         
-        var items = [coordinatesItem, clientIDItem, clientSecretItem, versionItem]
+        var items = [coordinatesItem,
+                     radiusItem,
+                     clientIDItem,
+                     clientSecretItem,
+                     versionItem]
         
         if let section = self.section {
             let sectionItem = URLQueryItem(name: QueryItems.section.rawValue, value: section.rawValue)
