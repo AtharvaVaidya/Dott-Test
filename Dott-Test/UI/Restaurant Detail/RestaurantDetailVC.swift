@@ -31,6 +31,8 @@ class RestaurantDetailVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Details"
+        
         tableView.register(ValueTableViewCell.self, forCellReuseIdentifier: ValueTableViewCell.identifier)
     }
     
@@ -51,5 +53,13 @@ class RestaurantDetailVC: UITableViewController {
         }
         
         return cell
+    }
+}
+
+extension RestaurantDetailVC {
+    static func makeWith(restaurant: Venue) -> RestaurantDetailVC {
+        let viewModel = RestaurantDetailVM(restaurant: restaurant)
+        let detailVC = RestaurantDetailVC(viewModel: viewModel)
+        return detailVC
     }
 }

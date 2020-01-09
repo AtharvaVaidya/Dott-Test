@@ -113,7 +113,9 @@ extension RestaurantsMapVC: MKMapViewDelegate {
         
         let restaurant = annotation.restaurant
         
+        let detailVC = RestaurantDetailVC.makeWith(restaurant: restaurant)
         
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
