@@ -46,7 +46,7 @@ class RestaurantDetailVM {
         case 0:
             return restaurant.name
         case 1:
-            return restaurant.location.address ?? ""
+            return restaurant.location.formattedAddress?.joined(separator: "\n") ?? (restaurant.location.address ?? "")
         case 2:
             return restaurant.categories.map({ $0.name }).joined(separator: ", ")
         default:

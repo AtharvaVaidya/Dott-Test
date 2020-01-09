@@ -32,10 +32,13 @@ class RestaurantDetailVC: UITableViewController {
         title = "Details"
         
         mapViewHeader.frame.size.height = 200
-
+        
         mapViewHeader.setCenter(viewModel.centrePointForMap, animated: false)
         mapViewHeader.addAnnotation(viewModel.annotation)
+        
         mapViewHeader.delegate = self
+        
+        //Register an annotation view
         mapViewHeader.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
         
         tableView.tableHeaderView = mapViewHeader
