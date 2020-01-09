@@ -20,6 +20,12 @@ class LocationManager: NSObject {
         return locationManager.location?.coordinate
     }
     
+    override init() {
+        super.init()
+        
+        startMonitoringLocation()
+    }
+    
     func requestAuthorization() {
         switch authorizationStatus {
         case .notDetermined:
@@ -27,6 +33,10 @@ class LocationManager: NSObject {
         default:
             break
         }
+    }
+    
+    func startMonitoringLocation() {
+        locationManager.startUpdatingLocation()
     }
 }
 

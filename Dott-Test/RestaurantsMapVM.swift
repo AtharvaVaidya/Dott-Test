@@ -31,11 +31,8 @@ class RestaurantsMapVM: ObservableObject {
         }
     }
     
-    func allRestaurants() -> [MKMapItem] {
-        let placemarks = model.placemarks()
-        let mapItems = placemarks.map { MKMapItem(placemark: $0) }
-        
-        return mapItems
+    func allRestaurants() -> Set<Venue> {
+        return model.venues
     }
     
     func downloadRestaurants() {
@@ -49,8 +46,13 @@ class RestaurantsMapVM: ObservableObject {
         
         apiClient.send(request: restaurantsRequest)
         .receive(on: backgroundQueue)
-        .sink(receiveCompletion: { (_) in
-            
+        .sink(receiveCompletion: { (result) in
+            switch result {
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            case .finished:
+                print("Downloaded all restaurants")
+            }
         }) { (response) in
             let allVenues = response.response.groups.map{ group -> [Venue] in
                 return group.items.map({ $0.venue })

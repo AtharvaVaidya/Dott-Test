@@ -8,8 +8,10 @@
 
 import MapKit
 
-class RestaurantAnnotationView: NSObject, MKAnnotation {
+class RestaurantAnnotation: NSObject, MKAnnotation {
     let restaurant: Venue
+    
+    static let identifier = "RestaurantAnnotationView"
     
     var coordinate: CLLocationCoordinate2D {
         return restaurant.location.coordinates

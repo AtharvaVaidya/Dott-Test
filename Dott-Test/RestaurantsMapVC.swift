@@ -36,28 +36,39 @@ class RestaurantsMapVC: UIViewController {
         viewModel.downloadRestaurants()
         
         viewModel.objectWillChange
-            .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { [weak self] (result) in
-                switch result {
-                case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
-                    break
-                case .finished:
-                    self?.redrawMap()
-                }
-            }, receiveValue: {})
-            .store(in: &cancellables)
+        .receive(on: RunLoop.main)
+        .sink(receiveCompletion: { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                break
+            case .finished:
+                self?.redrawMap()
+            }
+        }, receiveValue: {})
+        .store(in: &cancellables)
         
+        setupMap()
+    }
+    
+    func setupMap() {
         mapView.delegate = self
+        mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
     }
     
     func redrawMap() {
         mapView.removeAnnotations(mapView.annotations)
+        
+        let venues = viewModel.allRestaurants()
+        let annotations = venues.map({ RestaurantAnnotation(restaurant: $0) })
+        mapView.addAnnotations(annotations)
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        return nil
+        let view = mapView.dequeueReusableAnnotationView(withIdentifier: RestaurantAnnotation.identifier, for: annotation) 
+        
+        return view
     }
 }
 
