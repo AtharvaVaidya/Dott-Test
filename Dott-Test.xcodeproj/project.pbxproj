@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */; };
 		EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD523C7107F008B1193 /* AppDelegate.swift */; };
 		EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD723C7107F008B1193 /* SceneDelegate.swift */; };
 		EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
 		EC123DD223C7107F008B1193 /* Dott-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dott-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC123DD523C7107F008B1193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC123DD723C7107F008B1193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */,
+				EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */,
 				EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */,
 			);
 			path = "Generic Components";
@@ -383,6 +386,7 @@
 				EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */,
 				EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */,
 				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
+				EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */,
 				EC123E1A23C722C9008B1193 /* APICredentials.swift in Sources */,
 				EC123E2723C73C9C008B1193 /* Venue.swift in Sources */,
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,

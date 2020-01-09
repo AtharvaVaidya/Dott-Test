@@ -11,27 +11,26 @@ import Foundation
 class RestaurantDetailVM {
     private let restaurant: Venue
     
+    private let headers: [String] = ["Name", "Address", "Categories"]
+    
     init(restaurant: Venue) {
         self.restaurant = restaurant
     }
     
-    let numberOfSections = 3
+    var numberOfSections: Int {
+        return headers.count
+    }
     
     func numberOfRows(in section: Int) -> Int {
         return 1
     }
     
-    func titleForCell(at indexPath: IndexPath) -> String {
-        switch indexPath.section {
-        case 0:
-            return "Name"
-        case 1:
-            return "Address"
-        case 2:
-            return "Categories"
-        default:
+    func header(for section: Int) -> String {
+        guard headers.indices.contains(section) else {
             return ""
         }
+        
+        return headers[section]
     }
     
     func valueForCell(at indexPath: IndexPath) -> String {

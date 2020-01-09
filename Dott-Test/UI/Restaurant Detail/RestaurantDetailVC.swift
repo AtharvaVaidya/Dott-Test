@@ -18,10 +18,12 @@ class RestaurantDetailVC: UITableViewController {
     
     private let viewModel: RestaurantDetailVM
     
+    private let cellIdentifier: String = "RestaurantDetailCell"
+    
     init(viewModel: RestaurantDetailVM) {
         self.viewModel = viewModel
         
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +35,11 @@ class RestaurantDetailVC: UITableViewController {
         
         title = "Details"
         
-        tableView.register(ValueTableViewCell.self, forCellReuseIdentifier: ValueTableViewCell.identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,12 +53,15 @@ class RestaurantDetailVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ValueTableViewCell.identifier, for: indexPath)
         
-        if let cell = cell as? ValueTableViewCell {
-            cell.mainTextLabel.text = viewModel.titleForCell(at: indexPath)
-            cell.valueTextLabel.text = viewModel.valueForCell(at: indexPath)
-        }
+        cell.textLabel?.text = viewModel.valueForCell(at: indexPath)
+        cell.textLabel?.textColor = .label
+        cell.textLabel?.font = .preferredFont(forTextStyle: .body)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
     }
 }
 
