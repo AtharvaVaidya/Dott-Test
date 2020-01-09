@@ -38,7 +38,7 @@ class RestaurantsMapVM: ObservableObject {
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }
-    private func downloadRestaurants(for coordinates: CLLocationCoordinate2D, radius: Int = 10000) {
+    private func downloadRestaurants(for coordinates: CLLocationCoordinate2D, radius: Int = 3000) {
         let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig,
                                                       section: .food,
                                                       radius: radius,
@@ -77,7 +77,10 @@ class RestaurantsMapVM: ObservableObject {
     
     func downloadRestaurantsFor(view: MKMapView) {
         let center = view.centerCoordinate
-        let radius = Int(view.region.span.latitudeDelta * 111 * 1000)
+        
+        //The radius is calculated by multiplying the degrees by 111,000. Each degree of latitude is approximately 69 miles (111 kilometers) apart.
+        let radiusInDegrees = (view.region.span.longitudeDelta + view.region.span.latitudeDelta) / 2
+        let radius = Int(radiusInDegrees * 111 * 1000)
         
         downloadRestaurants(for: center, radius: radius)
     }
