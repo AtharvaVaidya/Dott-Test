@@ -38,7 +38,7 @@ class RestaurantsMapVC: UIViewController {
         
         viewModel.requestLocationPermissionIfNeeded()
         viewModel.downloadRestaurantsForCurrentLocation()
-
+        
         viewModel.subscribeToModel()
         .receive(on: RunLoop.main)
         .sink { [weak self] (venues) in
@@ -66,6 +66,10 @@ class RestaurantsMapVC: UIViewController {
     }
     
     func updateMap(currentLocation: CLLocation?) {
+        if mapView.userLocation.isUpdating {
+            return
+        }
+        
         if let coordinates = currentLocation?.coordinate {
             mapView.setCenter(coordinates, animated: true)
         }

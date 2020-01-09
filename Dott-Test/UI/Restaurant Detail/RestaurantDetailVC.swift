@@ -10,11 +10,7 @@ import UIKit
 import MapKit
 
 class RestaurantDetailVC: UITableViewController {
-    let mapViewHeader: MKMapView = {
-        let mapView = MKMapView()
-//        mapView.setCenter(<#T##coordinate: CLLocationCoordinate2D##CLLocationCoordinate2D#>, animated: <#T##Bool#>)
-        return mapView
-    }()
+    private let mapViewHeader: MKMapView = MKMapView()
     
     private let viewModel: RestaurantDetailVM
     
@@ -35,10 +31,24 @@ class RestaurantDetailVC: UITableViewController {
         
         title = "Details"
         
+        mapViewHeader.frame.size.height = 200
+
+        mapViewHeader.setCenter(viewModel.centrePointForMap, animated: false)
+        mapViewHeader.addAnnotation(viewModel.annotation)
+        mapViewHeader.delegate = self
+        mapViewHeader.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
+        
+        tableView.tableHeaderView = mapViewHeader
         tableView.register(TextHeaderView.self, forHeaderFooterViewReuseIdentifier: TextHeaderView.identifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         setupColors()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        mapViewHeader.camera.centerCoordinateDistance = 1000
     }
     
     func setupColors() {
@@ -46,7 +56,7 @@ class RestaurantDetailVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -67,6 +77,7 @@ class RestaurantDetailVC: UITableViewController {
         cell.textLabel?.text = viewModel.valueForCell(at: indexPath)
         cell.textLabel?.textColor = .label
         cell.textLabel?.font = .preferredFont(forTextStyle: .body)
+        cell.textLabel?.numberOfLines = 0
         cell.contentView.backgroundColor = .tertiarySystemGroupedBackground
         cell.backgroundColor = .tertiarySystemGroupedBackground
         
@@ -93,5 +104,26 @@ extension RestaurantDetailVC {
         let viewModel = RestaurantDetailVM(restaurant: restaurant)
         let detailVC = RestaurantDetailVC(viewModel: viewModel)
         return detailVC
+    }
+}
+
+extension RestaurantDetailVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? RestaurantAnnotation else {
+            return nil
+        }
+        
+        let identifier = RestaurantAnnotation.identifier
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = false
+        }
+        return view
     }
 }

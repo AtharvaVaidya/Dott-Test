@@ -6,7 +6,7 @@
 //  Copyright © 2020 Atharva Vaidya. All rights reserved.
 //
 
-import Foundation
+import MapKit
 
 class RestaurantDetailVM {
     private let restaurant: Venue
@@ -15,6 +15,14 @@ class RestaurantDetailVM {
     
     init(restaurant: Venue) {
         self.restaurant = restaurant
+    }
+    
+    var centrePointForMap: CLLocationCoordinate2D {
+        return restaurant.location.coordinates
+    }
+    
+    var annotation: RestaurantAnnotation {
+        return RestaurantAnnotation(restaurant: restaurant)
     }
     
     var numberOfSections: Int {
