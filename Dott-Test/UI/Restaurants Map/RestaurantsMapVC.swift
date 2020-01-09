@@ -37,7 +37,7 @@ class RestaurantsMapVC: UIViewController {
         super.viewDidLoad()
         
         viewModel.requestLocationPermissionIfNeeded()
-        viewModel.downloadRestaurants()
+        viewModel.downloadRestaurantsForCurrentLocation()
 
         viewModel.subscribeToModel()
         .receive(on: RunLoop.main)
@@ -53,11 +53,10 @@ class RestaurantsMapVC: UIViewController {
         mapView.delegate = self
         mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
         mapView.camera.centerCoordinateDistance = 10000
+        updateMap(currentLocation: viewModel.currentLocation)
     }
     
     func redrawMap() {
-        updateMap(currentLocation: viewModel.currentLocation)
-        
         mapView.removeAnnotations(mapView.annotations)
         
         let venues = viewModel.allRestaurants()
@@ -70,6 +69,10 @@ class RestaurantsMapVC: UIViewController {
         if let coordinates = currentLocation?.coordinate {
             mapView.setCenter(coordinates, animated: true)
         }
+    }
+    
+    @IBAction func downloadRestaurants(_ sender: Any) {
+        viewModel.downloadRestaurantsFor(view: mapView)
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {

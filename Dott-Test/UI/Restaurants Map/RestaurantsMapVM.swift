@@ -38,12 +38,7 @@ class RestaurantsMapVM: ObservableObject {
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }
-    
-    func downloadRestaurants() {
-        guard let coordinates = locationManager.currentCoordinates else {
-            return
-        }
-        
+    private func downloadRestaurants(for coordinates: CLLocationCoordinate2D) {
         let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig, section: .food, latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
         
         let backgroundQueue = DispatchQueue.global(qos: .default)
@@ -66,6 +61,20 @@ class RestaurantsMapVM: ObservableObject {
             self.model.venues.formUnion(allVenues)
         }
         .store(in: &cancellables)
+    }
+    
+    func downloadRestaurantsForCurrentLocation() {
+        guard let coordinates = locationManager.currentCoordinates else {
+            return
+        }
+        
+        downloadRestaurants(for: coordinates)
+    }
+    
+    func downloadRestaurantsFor(view: MKMapView) {
+        let center = view.centerCoordinate
+        
+        downloadRestaurants(for: center)
     }
     
     func subscribeToLocationChanges() -> AnyPublisher<CLLocation?, Never> {
