@@ -17,18 +17,19 @@ class RestaurantsMapVC: UIViewController {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    private var locationSubscriber = PassthroughSubject<CLLocation?, Never>()
-    
     private var selectedMarker: MKAnnotationView?
+    @Published private var currentMapCentre: CLLocationCoordinate2D
     
     init?(coder: NSCoder, viewModel: RestaurantsMapVM) {
         self.viewModel = viewModel
+        currentMapCentre = mapView?.centerCoordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
         
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
         self.viewModel = RestaurantsMapVM()
+        currentMapCentre = mapView?.centerCoordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
         
         super.init(coder: coder)
     }
@@ -51,6 +52,18 @@ class RestaurantsMapVC: UIViewController {
             self?.redrawMap()
         }
         .store(in: &cancellables)
+        
+        $currentMapCentre
+        .drop(untilOutputFrom: viewModel.subscribeToModel())
+        .dropFirst()
+        .debounce(for: 0.5, scheduler: RunLoop.main)
+        .sink { [weak self] _ in
+            guard let self = self, let mapView = self.mapView else {
+                return
+            }
+            self.viewModel.downloadRestaurantsFor(view: mapView)
+        }
+        .store(in: &cancellables)
     }
     
     //MARK:- MapView Methods
@@ -71,10 +84,6 @@ class RestaurantsMapVC: UIViewController {
     }
     
     private func updateMap(currentLocation: CLLocation?) {
-        if mapView.userLocation.isUpdating {
-            return
-        }
-        
         if let coordinates = currentLocation?.coordinate {
             mapView.setCenter(coordinates, animated: true)
         }
@@ -125,6 +134,10 @@ extension RestaurantsMapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         selectedMarker = nil
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        currentMapCentre = mapView.centerCoordinate
     }
     
     @objc private func disclosureButtonPressed() {
