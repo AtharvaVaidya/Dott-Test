@@ -35,11 +35,16 @@ class RestaurantDetailVC: UITableViewController {
         
         title = "Details"
         
+        tableView.register(TextHeaderView.self, forHeaderFooterViewReuseIdentifier: TextHeaderView.identifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +56,7 @@ class RestaurantDetailVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ValueTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         cell.textLabel?.text = viewModel.valueForCell(at: indexPath)
         cell.textLabel?.textColor = .label
@@ -61,7 +66,13 @@ class RestaurantDetailVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: TextHeaderView.identifier)
         
+        if let textHeader = view as? TextHeaderView {
+            textHeader.titleLabel.text = viewModel.header(for: section)
+        }
+        
+        return view
     }
 }
 

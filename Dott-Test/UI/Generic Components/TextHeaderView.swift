@@ -15,14 +15,18 @@ class TextHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        
         addSubviews()
         makeConstraints()
+        configureViews()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         addSubviews()
         makeConstraints()
+        configureViews()
     }
     
     private func configureViews() {
@@ -37,10 +41,12 @@ class TextHeaderView: UITableViewHeaderFooterView {
     private func makeConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let constraints = [titleLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
-                           titleLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
-                           titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-                           titleLabel.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8)]
+        let layoutGuide = contentView.safeAreaLayoutGuide
+        
+        let constraints = [titleLabel.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor, constant: 8),
+                           titleLabel.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor, constant: -8),
+                           titleLabel.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 8),
+                           titleLabel.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -8)]
         
         NSLayoutConstraint.activate(constraints)
     }
