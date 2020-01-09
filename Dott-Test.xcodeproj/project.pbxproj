@@ -22,6 +22,7 @@
 		EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0E23C715EF008B1193 /* NetworkError.swift */; };
 		EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1123C71640008B1193 /* APIServiceConfig.swift */; };
 		EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1323C71655008B1193 /* NetworkingAliases.swift */; };
+		EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E1523C716E9008B1193 /* APIEndPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		EC123E0E23C715EF008B1193 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		EC123E1123C71640008B1193 /* APIServiceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceConfig.swift; sourceTree = "<group>"; };
 		EC123E1323C71655008B1193 /* NetworkingAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAliases.swift; sourceTree = "<group>"; };
+		EC123E1523C716E9008B1193 /* APIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				EC123E0A23C71552008B1193 /* APIRequest.swift */,
 				EC123E0C23C715C2008B1193 /* APIClient.swift */,
 				EC123E1123C71640008B1193 /* APIServiceConfig.swift */,
+				EC123E1523C716E9008B1193 /* APIEndPoint.swift */,
 				EC123E0E23C715EF008B1193 /* NetworkError.swift */,
 			);
 			path = Network;
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */,
 				EC123DE023C7107F008B1193 /* Dott_Test.xcdatamodeld in Sources */,
 				EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */,
 				EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */,
