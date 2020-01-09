@@ -56,7 +56,7 @@ class RestaurantsMapVC: UIViewController {
         $currentMapCentre
         .drop(untilOutputFrom: viewModel.subscribeToModel())
         .dropFirst()
-        .debounce(for: 0.5, scheduler: RunLoop.main)
+        .debounce(for: 1, scheduler: RunLoop.main)
         .sink { [weak self] _ in
             guard let self = self, let mapView = self.mapView else {
                 return
@@ -87,11 +87,6 @@ class RestaurantsMapVC: UIViewController {
         if let coordinates = currentLocation?.coordinate {
             mapView.setCenter(coordinates, animated: true)
         }
-    }
-    
-    //MARK:- IBAction Methods
-    @IBAction private func downloadRestaurants(_ sender: Any) {
-        viewModel.downloadRestaurantsFor(view: mapView)
     }
     
     //MARK:- Trait Collection Methods
