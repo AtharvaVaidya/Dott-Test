@@ -37,6 +37,12 @@ class RestaurantDetailVC: UITableViewController {
         
         tableView.register(TextHeaderView.self, forHeaderFooterViewReuseIdentifier: TextHeaderView.identifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        
+        setupColors()
+    }
+    
+    func setupColors() {
+        tableView.backgroundColor = .secondarySystemBackground
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -61,6 +67,8 @@ class RestaurantDetailVC: UITableViewController {
         cell.textLabel?.text = viewModel.valueForCell(at: indexPath)
         cell.textLabel?.textColor = .label
         cell.textLabel?.font = .preferredFont(forTextStyle: .body)
+        cell.contentView.backgroundColor = .tertiarySystemGroupedBackground
+        cell.backgroundColor = .tertiarySystemGroupedBackground
         
         return cell
     }
@@ -73,6 +81,10 @@ class RestaurantDetailVC: UITableViewController {
         }
         
         return view
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupColors()
     }
 }
 
