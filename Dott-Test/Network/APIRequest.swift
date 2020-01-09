@@ -8,8 +8,16 @@
 
 import Foundation
 
-protocol APIRequest {
+public protocol APIRequest {
     associatedtype Response
+        
+    func signed() -> URLRequest
+}
+
+public protocol FSAPIRequest: APIRequest where Response: Codable {
+    static var endPoint: APIEndPoint { get }
+    static var authenticationType: FSRequestAuthenticationType { get }
+    var serviceConfig: APIServiceConfig { get }
     
-    func urlRequest() -> URLRequest
+    func requestURL(queryItems: [URLQueryItem]) -> URL?
 }

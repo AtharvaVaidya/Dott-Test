@@ -14,9 +14,9 @@ protocol APIClientProtocol {
     func send<T: APIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> where T.Response: Codable
 }
 
-class APIClient: APIClientProtocol {
+class FSAPIClient: APIClientProtocol {
     func send<T: APIRequest>(request: T) -> AnyPublisher<Data, NetworkError> {
-        let urlRequest = request.urlRequest()
+        let urlRequest = request.signed()
         
         let publisher = URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap({ (data, response) -> Data in
@@ -41,7 +41,7 @@ class APIClient: APIClientProtocol {
     }
     
     func send<T: APIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> where T.Response: Codable {
-        let urlRequest = request.urlRequest()
+        let urlRequest = request.signed()
         
         let publisher = URLSession.shared.dataTaskPublisher(for: urlRequest)
             .retry(5)

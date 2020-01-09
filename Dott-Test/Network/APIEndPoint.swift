@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol APIEndPoint {
+public protocol APIEndPoint {
     static var base: String { get }
     
     func construct() -> String
