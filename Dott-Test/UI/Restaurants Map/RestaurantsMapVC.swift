@@ -19,6 +19,8 @@ class RestaurantsMapVC: UIViewController {
     
     private var locationSubscriber = PassthroughSubject<CLLocation?, Never>()
     
+    private var selectedMarker: MKAnnotationView?
+    
     init?(coder: NSCoder, viewModel: RestaurantsMapVM) {
         self.viewModel = viewModel
         
@@ -44,13 +46,6 @@ class RestaurantsMapVC: UIViewController {
         }
         .store(in: &cancellables)
         
-        viewModel.subscribeToLocationChanges()
-        .receive(on: RunLoop.main)
-        .sink { [weak self] (location) in
-            self?.updateMap(currentLocation: location)
-        }
-        .store(in: &cancellables)
-        
         setupMap()
     }
     
@@ -61,29 +56,24 @@ class RestaurantsMapVC: UIViewController {
     }
     
     func redrawMap() {
-        if let currentLocation = viewModel.currentLocation {
-            mapView.setCenter(currentLocation.coordinate, animated: true)
-        }
+        updateMap(currentLocation: viewModel.currentLocation)
         
         mapView.removeAnnotations(mapView.annotations)
         
         let venues = viewModel.allRestaurants()
         let annotations = venues.map({ RestaurantAnnotation(restaurant: $0) })
-        
-        print("Got venues: \(venues)")
-        
+                
         mapView.addAnnotations(annotations)
     }
     
     func updateMap(currentLocation: CLLocation?) {
-//        if let coordinates = currentLocation?.coordinate {
-//            mapView.setCenter(coordinates, animated: true)
-//        }
+        if let coordinates = currentLocation?.coordinate {
+            mapView.setCenter(coordinates, animated: true)
+        }
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
         guard let annotation = annotation as? RestaurantAnnotation else {
             return nil
         }
@@ -99,9 +89,31 @@ extension RestaurantsMapVC: MKMapViewDelegate {
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.detailCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            
+            let disclosureButton = UIButton(type: .detailDisclosure)
+            disclosureButton.addTarget(self, action: #selector(disclosureButtonPressed), for: .touchUpInside)
+            view.detailCalloutAccessoryView = disclosureButton
         }
         return view
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedMarker = view
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        selectedMarker = nil
+    }
+    
+    @objc func disclosureButtonPressed() {
+        guard let selectedMarker = self.selectedMarker,
+            let annotation = selectedMarker.annotation as? RestaurantAnnotation else {
+                return
+        }
+        
+        let restaurant = annotation.restaurant
+        
+        
     }
 }
 

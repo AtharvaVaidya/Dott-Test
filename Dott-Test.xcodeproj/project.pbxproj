@@ -31,6 +31,10 @@
 		EC123E2523C73B83008B1193 /* RestaurantsMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */; };
 		EC123E2723C73C9C008B1193 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2623C73C9C008B1193 /* Venue.swift */; };
 		EC2C4D9823C75AA700059D92 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */; };
+		EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */; };
+		EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */; };
+		EC9C50CC23C7B0B8008B6B75 /* ValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */; };
+		EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,10 @@
 		EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapModel.swift; sourceTree = "<group>"; };
 		EC123E2623C73C9C008B1193 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
+		EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVM.swift; sourceTree = "<group>"; };
+		EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTableViewCell.swift; sourceTree = "<group>"; };
+		EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,10 +143,7 @@
 				EC123DD723C7107F008B1193 /* SceneDelegate.swift */,
 				EC123E1D23C72642008B1193 /* Model */,
 				EC123E1023C71612008B1193 /* Network */,
-				EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */,
-				EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */,
-				EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */,
-				EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */,
+				EC9C50CF23C7B2CC008B6B75 /* UI */,
 				EC123DDB23C7107F008B1193 /* Main.storyboard */,
 				EC123DE123C71081008B1193 /* Assets.xcassets */,
 				EC123DE323C71081008B1193 /* LaunchScreen.storyboard */,
@@ -190,6 +195,45 @@
 				EC123E2623C73C9C008B1193 /* Venue.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EC9C50CF23C7B2CC008B6B75 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C50D223C7B2F7008B6B75 /* Generic Components */,
+				EC9C50D123C7B2E3008B6B75 /* Restaurants Map */,
+				EC9C50D023C7B2D3008B6B75 /* Restaurant Detail */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EC9C50D023C7B2D3008B6B75 /* Restaurant Detail */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */,
+				EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */,
+			);
+			path = "Restaurant Detail";
+			sourceTree = "<group>";
+		};
+		EC9C50D123C7B2E3008B6B75 /* Restaurants Map */ = {
+			isa = PBXGroup;
+			children = (
+				EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */,
+				EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */,
+				EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */,
+				EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */,
+			);
+			path = "Restaurants Map";
+			sourceTree = "<group>";
+		};
+		EC9C50D223C7B2F7008B6B75 /* Generic Components */ = {
+			isa = PBXGroup;
+			children = (
+				EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */,
+				EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */,
+			);
+			path = "Generic Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,14 +375,18 @@
 				EC123E2323C7367C008B1193 /* LocationManager.swift in Sources */,
 				EC123E2523C73B83008B1193 /* RestaurantsMapModel.swift in Sources */,
 				EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */,
+				EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */,
 				EC123E0D23C715C2008B1193 /* FSAPIClient.swift in Sources */,
 				EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */,
+				EC9C50CC23C7B0B8008B6B75 /* ValueTableViewCell.swift in Sources */,
 				EC123E1823C720AD008B1193 /* RestaurantsMapVM.swift in Sources */,
 				EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */,
+				EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */,
 				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
 				EC123E1A23C722C9008B1193 /* APICredentials.swift in Sources */,
 				EC123E2723C73C9C008B1193 /* Venue.swift in Sources */,
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
+				EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */,
 				EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */,
 				EC123E0923C712DE008B1193 /* ExploreVenuesResponse.swift in Sources */,
 				EC123E2123C72BBB008B1193 /* ExploreVenuesRequest.swift in Sources */,

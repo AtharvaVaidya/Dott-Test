@@ -19,16 +19,32 @@ class ExploreVenuesRequest: FSAPIRequest {
     private let latitude: Float
     private let longitude: Float
     
+    let section: Section?
+    
     private enum QueryItems: String {
         case ll = "ll"
         case clientID = "client_id"
         case clientSecret = "client_secret"
         ///v is the version in the format YYYYMMDD
         case v = "v"
+        case section = "section"
     }
     
-    init(serviceConfig: APIServiceConfig, latitude: Float, longitude: Float) {
+    enum Section: String {
+        case food
+        case drinks
+        case coffee
+        case shops
+        case arts
+        case outdoors
+        case sights
+        case trending
+        case nextVenues
+    }
+    
+    init(serviceConfig: APIServiceConfig, section: Section, latitude: Float, longitude: Float) {
         self.serviceConfig = serviceConfig
+        self.section = section
         self.latitude = latitude
         self.longitude = longitude
     }
@@ -46,7 +62,14 @@ class ExploreVenuesRequest: FSAPIRequest {
         let clientSecretItem = URLQueryItem(name: QueryItems.clientSecret.rawValue, value: apiSecret)
         let versionItem = URLQueryItem(name: QueryItems.v.rawValue, value: version)
         
-        return [coordinatesItem, clientIDItem, clientSecretItem, versionItem]
+        var items = [coordinatesItem, clientIDItem, clientSecretItem, versionItem]
+        
+        if let section = self.section {
+            let sectionItem = URLQueryItem(name: QueryItems.section.rawValue, value: section.rawValue)
+            items.append(sectionItem)
+        }
+        
+        return items
     }
     
     func signed() -> URLRequest {

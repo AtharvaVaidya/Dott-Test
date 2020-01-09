@@ -44,7 +44,7 @@ class RestaurantsMapVM: ObservableObject {
             return
         }
         
-        let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig, latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
+        let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig, section: .food, latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
         
         let backgroundQueue = DispatchQueue.global(qos: .default)
         
