@@ -7,16 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "73A66E6F-9A7F-4090-9DE6-328C41B5CE8E"
+            uuid = "D9449DCC-7C9A-41C3-AFBD-FAC678517653"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Dott-Test/Network/FSAPIClient.swift"
+            filePath = "Dott-Test/RestaurantsMapVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "send(request:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "redrawMap()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A784000D-7E4F-4D60-80E0-CD9548554205"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dott-Test/RestaurantsMapVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "redrawMap()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A784000D-7E4F-4D60-80E0-CD9548554205 - 3994df6bea282391"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Dott_Test.RestaurantsMapVC.redrawMap() -&gt; ()"
+                  moduleName = "Dott-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/atharvavaidya/Developer/Tests/Dott-Test/Dott-Test/RestaurantsMapVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1300">
+               </Location>
+               <Location
+                  uuid = "A784000D-7E4F-4D60-80E0-CD9548554205 - a74adc3d9ab1fc1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Dott_Test.Venue) -&gt; Dott_Test.RestaurantAnnotation in Dott_Test.RestaurantsMapVC.redrawMap() -&gt; ()"
+                  moduleName = "Dott-Test"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/atharvavaidya/Developer/Tests/Dott-Test/Dott-Test/RestaurantsMapVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF035F34-F05A-47F5-8C69-A5A567FE5A7D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dott-Test/RestaurantsMapVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 class LocationManager: NSObject {
     private let locationManager = CLLocationManager()
@@ -20,13 +21,14 @@ class LocationManager: NSObject {
         return locationManager.location?.coordinate
     }
     
-    var currentLocation: CLLocation? {
-        return locationManager.location
-    }
+    @Published var currentLocation: CLLocation?
+    
+    private var locationUpdatePublisher = PassthroughSubject<CLLocation?, Never>()
     
     override init() {
         super.init()
         
+        locationManager.delegate = self
         startMonitoringLocation()
     }
     
@@ -41,6 +43,10 @@ class LocationManager: NSObject {
     
     func startMonitoringLocation() {
         locationManager.startUpdatingLocation()
+    }
+    
+    func subscribeToLocationChanges<T: Subscriber>(subscriber: T) where T.Input == CLLocation?, T.Failure == Never {
+        locationUpdatePublisher.subscribe(subscriber)
     }
 }
 
@@ -60,5 +66,9 @@ extension LocationManager: CLLocationManagerDelegate {
         @unknown default:
             break
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = manager.location
     }
 }

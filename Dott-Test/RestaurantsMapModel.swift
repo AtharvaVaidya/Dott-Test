@@ -8,7 +8,14 @@
 
 import Foundation
 import MapKit
+import Combine
 
-class RestaurantsMapModel: ObservableObject {
-    @Published var venues: Set<Venue> = []
+class RestaurantsMapModel {
+    var venues: Set<Venue> = [] {
+        didSet {
+            modelChangedPublisher.send(venues)
+        }
+    }
+    
+    var modelChangedPublisher = PassthroughSubject<Set<Venue>, Never>()
 }

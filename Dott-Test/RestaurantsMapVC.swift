@@ -13,9 +13,11 @@ import Combine
 class RestaurantsMapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
-    private let viewModel: RestaurantsMapVM
+    private var viewModel: RestaurantsMapVM
     
     private var cancellables: Set<AnyCancellable> = []
+    
+    private var locationSubscriber = PassthroughSubject<CLLocation?, Never>()
     
     init?(coder: NSCoder, viewModel: RestaurantsMapVM) {
         self.viewModel = viewModel
@@ -34,18 +36,19 @@ class RestaurantsMapVC: UIViewController {
         
         viewModel.requestLocationPermissionIfNeeded()
         viewModel.downloadRestaurants()
-        
-        viewModel.objectWillChange
+
+        viewModel.subscribeToModel()
         .receive(on: RunLoop.main)
-        .sink(receiveCompletion: { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-                break
-            case .finished:
-                self?.redrawMap()
-            }
-        }, receiveValue: {})
+        .sink { [weak self] (venues) in
+            self?.redrawMap()
+        }
+        .store(in: &cancellables)
+        
+        viewModel.subscribeToLocationChanges()
+        .receive(on: RunLoop.main)
+        .sink { [weak self] (location) in
+            self?.updateMap(currentLocation: location)
+        }
         .store(in: &cancellables)
         
         setupMap()
@@ -54,6 +57,7 @@ class RestaurantsMapVC: UIViewController {
     func setupMap() {
         mapView.delegate = self
         mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
+        mapView.camera.centerCoordinateDistance = 10000
     }
     
     func redrawMap() {
@@ -65,13 +69,38 @@ class RestaurantsMapVC: UIViewController {
         
         let venues = viewModel.allRestaurants()
         let annotations = venues.map({ RestaurantAnnotation(restaurant: $0) })
+        
+        print("Got venues: \(venues)")
+        
         mapView.addAnnotations(annotations)
+    }
+    
+    func updateMap(currentLocation: CLLocation?) {
+//        if let coordinates = currentLocation?.coordinate {
+//            mapView.setCenter(coordinates, animated: true)
+//        }
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let view = mapView.dequeueReusableAnnotationView(withIdentifier: RestaurantAnnotation.identifier, for: annotation) 
         
+        guard let annotation = annotation as? RestaurantAnnotation else {
+            return nil
+        }
+        
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.detailCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
         return view
     }
 }

@@ -14,7 +14,7 @@ import MapKit
 class RestaurantsMapVM: ObservableObject {
     private let apiClient = FSAPIClient()
     private let locationManager = LocationManager()
-    @Published private var model = RestaurantsMapModel()
+    private var model = RestaurantsMapModel()
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -63,8 +63,16 @@ class RestaurantsMapVM: ObservableObject {
             })
             .joined()
             
-            self.model.venues = Set(allVenues)
+            self.model.venues.formUnion(allVenues)
         }
         .store(in: &cancellables)
+    }
+    
+    func subscribeToLocationChanges() -> AnyPublisher<CLLocation?, Never> {
+        return locationManager.$currentLocation.eraseToAnyPublisher()
+    }
+    
+    func subscribeToModel() -> AnyPublisher<Set<Venue>, Never> {
+        return model.modelChangedPublisher.eraseToAnyPublisher()
     }
 }

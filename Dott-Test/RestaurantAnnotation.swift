@@ -23,6 +23,10 @@ class RestaurantAnnotation: NSObject, MKAnnotation {
         super.init()
     }
     
+    var title: String? {
+        return restaurant.name
+    }
+    
     var subtitle: String? {
         return restaurant.name
     }
