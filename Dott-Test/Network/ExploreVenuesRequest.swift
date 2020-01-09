@@ -8,8 +8,8 @@
 
 import Foundation
 
-class GetVenuesRequest: FSAPIRequest {
-    typealias Response = GetVenuesResponse
+class ExploreVenuesRequest: FSAPIRequest {
+    typealias Response = ExploreVenuesResponse
     
     static let endPoint: APIEndPoint = APIEndPoints.Venues.explore
     static let authenticationType: FSRequestAuthenticationType = .userless
@@ -58,7 +58,7 @@ class GetVenuesRequest: FSAPIRequest {
     
     func requestURL(queryItems: [URLQueryItem]) -> URL? {
         let baseURL = serviceConfig.url.absoluteString
-        let endPointString = GetVenuesRequest.endPoint.construct()
+        let endPointString = ExploreVenuesRequest.endPoint.construct()
         let urlString = baseURL + endPointString
         
         guard var urlComponents = URLComponents(string: urlString) else {

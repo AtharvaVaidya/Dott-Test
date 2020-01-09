@@ -7,7 +7,22 @@
 //
 
 import Foundation
+import CoreLocation
 
 class RestaurantsMapVM {
+    private let apiClient = FSAPIClient()
+    private let locationManager = LocationManager()
     
+    init() {
+        requestLocationPermissionIfNeeded()
+    }
+    
+    func requestLocationPermissionIfNeeded() {
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestAuthorization()
+        default:
+            break
+        }
+    }
 }

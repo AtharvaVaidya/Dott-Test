@@ -8,8 +8,8 @@
 
 import Foundation
 
-// MARK: - GetVenuesResponse
-struct GetVenuesResponse: Codable {
+// MARK: - ExploreVenuesResponse
+struct ExploreVenuesResponse: Codable {
     let meta: Meta
     let response: Response
     
