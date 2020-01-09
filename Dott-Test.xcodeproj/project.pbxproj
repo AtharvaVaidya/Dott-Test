@@ -30,6 +30,7 @@
 		EC123E2323C7367C008B1193 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2223C7367C008B1193 /* LocationManager.swift */; };
 		EC123E2523C73B83008B1193 /* RestaurantsMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */; };
 		EC123E2723C73C9C008B1193 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2623C73C9C008B1193 /* Venue.swift */; };
+		EC2C4D9823C75AA700059D92 /* RestaurantAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C4D9723C75AA700059D92 /* RestaurantAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		EC123E2223C7367C008B1193 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapModel.swift; sourceTree = "<group>"; };
 		EC123E2623C73C9C008B1193 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		EC2C4D9723C75AA700059D92 /* RestaurantAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				EC123E1D23C72642008B1193 /* Model */,
 				EC123E1023C71612008B1193 /* Network */,
 				EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */,
+				EC2C4D9723C75AA700059D92 /* RestaurantAnnotationView.swift */,
 				EC123E1723C720AD008B1193 /* RestaurantsMapVM.swift */,
 				EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */,
 				EC123DDB23C7107F008B1193 /* Main.storyboard */,
@@ -322,6 +325,7 @@
 			files = (
 				EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */,
 				EC123E1F23C72827008B1193 /* FSRequestAuthenticationType.swift in Sources */,
+				EC2C4D9823C75AA700059D92 /* RestaurantAnnotationView.swift in Sources */,
 				EC123DE023C7107F008B1193 /* Dott_Test.xcdatamodeld in Sources */,
 				EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */,
 				EC123E2323C7367C008B1193 /* LocationManager.swift in Sources */,

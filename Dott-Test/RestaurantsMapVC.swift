@@ -52,7 +52,7 @@ class RestaurantsMapVC: UIViewController {
     }
     
     func redrawMap() {
-        
+        mapView.removeAnnotations(mapView.annotations)
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
