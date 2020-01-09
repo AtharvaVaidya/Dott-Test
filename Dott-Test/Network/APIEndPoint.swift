@@ -8,13 +8,30 @@
 
 import Foundation
 
-struct EndPoint {
-    struct Venues {
+protocol EndPoint {
+    static var base: String { get }
+    
+    func construct() -> String
+}
+
+struct APIEndPoints {
+    enum Venues: EndPoint {
         static let base = "/venues"
-        static let explore = base + "/explore"
         
-        static func details(for eventID: String) -> String {
-            return base + "/\(eventID)"
+        case explore
+        case details(eventID: String)
+        
+        func construct() -> String {
+            var result = Venues.base
+            
+            switch self {
+            case .explore:
+                result += "/explore"
+            case .details(let eventID):
+                result += "/\(eventID)"
+            }
+            
+            return result
         }
     }
 }
