@@ -23,6 +23,8 @@ class ExploreVenuesRequest: FSAPIRequest {
         case ll = "ll"
         case clientID = "client_id"
         case clientSecret = "client_secret"
+        ///v is the version in the format YYYYMMDD
+        case v = "v"
     }
     
     init(serviceConfig: APIServiceConfig, latitude: Float, longitude: Float) {
@@ -32,16 +34,19 @@ class ExploreVenuesRequest: FSAPIRequest {
     }
     
     private func constructURLQueryItems() -> [URLQueryItem] {
-        let coordinates = "\(latitude), \(longitude)"
+        let coordinates = "\(latitude),\(longitude)"
         
         let apiKey = FSAPICredentials.apiKey
         let apiSecret = FSAPICredentials.apiSecret
         
+        let version = getCurrentVersion()
+        
         let coordinatesItem = URLQueryItem(name: QueryItems.ll.rawValue, value: coordinates)
         let clientIDItem = URLQueryItem(name: QueryItems.clientID.rawValue, value: apiKey)
         let clientSecretItem = URLQueryItem(name: QueryItems.clientSecret.rawValue, value: apiSecret)
+        let versionItem = URLQueryItem(name: QueryItems.v.rawValue, value: version)
         
-        return [coordinatesItem, clientIDItem, clientSecretItem]
+        return [coordinatesItem, clientIDItem, clientSecretItem, versionItem]
     }
     
     func signed() -> URLRequest {
@@ -72,5 +77,12 @@ class ExploreVenuesRequest: FSAPIRequest {
         }
         
         return url
+    }
+    
+    private func getCurrentVersion() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYYMMDD"
+        
+        return dateFormatter.string(from: Date())
     }
 }

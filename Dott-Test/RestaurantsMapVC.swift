@@ -57,6 +57,10 @@ class RestaurantsMapVC: UIViewController {
     }
     
     func redrawMap() {
+        if let currentLocation = viewModel.currentLocation {
+            mapView.setCenter(currentLocation.coordinate, animated: true)
+        }
+        
         mapView.removeAnnotations(mapView.annotations)
         
         let venues = viewModel.allRestaurants()

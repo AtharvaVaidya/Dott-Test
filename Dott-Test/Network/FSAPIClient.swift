@@ -53,6 +53,7 @@ class FSAPIClient: APIClientProtocol {
                 
                 if response.statusCode != 200 {
                     print("Status code: \(response.statusCode)")
+                    print("Response: \(String(data: data, encoding: .utf8) ?? "")")
                     throw NetworkError.badStatusCode
                 }
                 
@@ -60,6 +61,7 @@ class FSAPIClient: APIClientProtocol {
             }
             .decode(type: T.Response.self, decoder: JSONDecoder())
             .mapError { (error) -> NetworkError in
+                print("Error decodeing JSON: \((error as NSError).userInfo)")
                 return NetworkError.failedToParseJSONData
             }
             .eraseToAnyPublisher()

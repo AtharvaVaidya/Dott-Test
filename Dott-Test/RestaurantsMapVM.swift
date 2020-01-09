@@ -31,12 +31,16 @@ class RestaurantsMapVM: ObservableObject {
         }
     }
     
+    var currentLocation: CLLocation? {
+        return locationManager.currentLocation
+    }
+    
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }
     
     func downloadRestaurants() {
-        guard let coordinates = locationManager.currentLocation else {
+        guard let coordinates = locationManager.currentCoordinates else {
             return
         }
         
@@ -54,9 +58,9 @@ class RestaurantsMapVM: ObservableObject {
                 print("Downloaded all restaurants")
             }
         }) { (response) in
-            let allVenues = response.response.groups.map{ group -> [Venue] in
-                return group.items.map({ $0.venue })
-            }
+            let allVenues = (response.response.groups.map{ group -> [Venue] in
+                return group.items.compactMap({ $0.venue })
+            })
             .joined()
             
             self.model.venues = Set(allVenues)

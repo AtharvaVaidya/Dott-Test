@@ -26,7 +26,7 @@ struct ExploreVenuesResponse: Codable {
 
     // MARK: - Response
     struct Response: Codable {
-        let warning: Warning
+        let warning: Warning?
         let suggestedRadius: Int
         let headerLocation, headerFullLocation, headerLocationGranularity: String
         let totalResults: Int

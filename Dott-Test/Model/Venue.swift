@@ -13,8 +13,8 @@ struct Venue: Codable, Equatable, Hashable {
     let id, name: String
     let location: Location
     let categories: [Category]
-    let popularityByGeo: Double
-    let venuePage: Page
+    let popularityByGeo: Double?
+    let venuePage: Page?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -24,13 +24,14 @@ struct Venue: Codable, Equatable, Hashable {
 extension Venue {
     // MARK: - Location
     struct Location: Codable, Equatable {
-        let address, crossStreet: String
+        let address: String?
+        let crossStreet: String?
         let lat, lng: Double
-        let labeledLatLngs: [LabeledLatLng]
-        let distance: Int
-        let postalCode, cc, city, state: String
-        let country: String
-        let formattedAddress: [String]
+        let labeledLatLngs: [LabeledLatLng]?
+        let distance: Int?
+        let postalCode, cc, city, state: String?
+        let country: String?
+        let formattedAddress: [String]?
     }
 
     // MARK: - LabeledLatLng

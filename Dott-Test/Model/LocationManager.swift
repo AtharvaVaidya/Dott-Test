@@ -16,8 +16,12 @@ class LocationManager: NSObject {
         return CLLocationManager.authorizationStatus()
     }
     
-    var currentLocation: CLLocationCoordinate2D? {
+    var currentCoordinates: CLLocationCoordinate2D? {
         return locationManager.location?.coordinate
+    }
+    
+    var currentLocation: CLLocation? {
+        return locationManager.location
     }
     
     override init() {
