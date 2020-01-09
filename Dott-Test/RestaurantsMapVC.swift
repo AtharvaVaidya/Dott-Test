@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController {
+class RestaurantsMapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
