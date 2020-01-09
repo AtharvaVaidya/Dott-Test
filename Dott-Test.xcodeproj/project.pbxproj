@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD523C7107F008B1193 /* AppDelegate.swift */; };
+		EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD723C7107F008B1193 /* SceneDelegate.swift */; };
+		EC123DDA23C7107F008B1193 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD923C7107F008B1193 /* ViewController.swift */; };
+		EC123DDD23C7107F008B1193 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC123DDB23C7107F008B1193 /* Main.storyboard */; };
+		EC123DE023C7107F008B1193 /* Dott_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EC123DDE23C7107F008B1193 /* Dott_Test.xcdatamodeld */; };
+		EC123DE223C71081008B1193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC123DE123C71081008B1193 /* Assets.xcassets */; };
+		EC123DE523C71081008B1193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC123DE323C71081008B1193 /* LaunchScreen.storyboard */; };
+		EC123DF023C71081008B1193 /* Dott_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DEF23C71081008B1193 /* Dott_TestTests.swift */; };
+		EC123DFB23C71081008B1193 /* Dott_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC123DEC23C71081008B1193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC123DCA23C7107F008B1193 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC123DD123C7107F008B1193;
+			remoteInfo = "Dott-Test";
+		};
+		EC123DF723C71081008B1193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC123DCA23C7107F008B1193 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC123DD123C7107F008B1193;
+			remoteInfo = "Dott-Test";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC123DD223C7107F008B1193 /* Dott-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dott-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC123DD523C7107F008B1193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EC123DD723C7107F008B1193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EC123DD923C7107F008B1193 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EC123DDC23C7107F008B1193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC123DDF23C7107F008B1193 /* Dott_Test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dott_Test.xcdatamodel; sourceTree = "<group>"; };
+		EC123DE123C71081008B1193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC123DE423C71081008B1193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC123DE623C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dott-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC123DEF23C71081008B1193 /* Dott_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dott_TestTests.swift; sourceTree = "<group>"; };
+		EC123DF123C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dott-TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dott_TestUITests.swift; sourceTree = "<group>"; };
+		EC123DFC23C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC123DCF23C7107F008B1193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DE823C71081008B1193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DF323C71081008B1193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC123DC923C7107F008B1193 = {
+			isa = PBXGroup;
+			children = (
+				EC123DD423C7107F008B1193 /* Dott-Test */,
+				EC123DEE23C71081008B1193 /* Dott-TestTests */,
+				EC123DF923C71081008B1193 /* Dott-TestUITests */,
+				EC123DD323C7107F008B1193 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC123DD323C7107F008B1193 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC123DD223C7107F008B1193 /* Dott-Test.app */,
+				EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */,
+				EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC123DD423C7107F008B1193 /* Dott-Test */ = {
+			isa = PBXGroup;
+			children = (
+				EC123DD523C7107F008B1193 /* AppDelegate.swift */,
+				EC123DD723C7107F008B1193 /* SceneDelegate.swift */,
+				EC123DD923C7107F008B1193 /* ViewController.swift */,
+				EC123DDB23C7107F008B1193 /* Main.storyboard */,
+				EC123DE123C71081008B1193 /* Assets.xcassets */,
+				EC123DE323C71081008B1193 /* LaunchScreen.storyboard */,
+				EC123DE623C71081008B1193 /* Info.plist */,
+				EC123DDE23C7107F008B1193 /* Dott_Test.xcdatamodeld */,
+			);
+			path = "Dott-Test";
+			sourceTree = "<group>";
+		};
+		EC123DEE23C71081008B1193 /* Dott-TestTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC123DEF23C71081008B1193 /* Dott_TestTests.swift */,
+				EC123DF123C71081008B1193 /* Info.plist */,
+			);
+			path = "Dott-TestTests";
+			sourceTree = "<group>";
+		};
+		EC123DF923C71081008B1193 /* Dott-TestUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */,
+				EC123DFC23C71081008B1193 /* Info.plist */,
+			);
+			path = "Dott-TestUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC123DD123C7107F008B1193 /* Dott-Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC123DFF23C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-Test" */;
+			buildPhases = (
+				EC123DCE23C7107F008B1193 /* Sources */,
+				EC123DCF23C7107F008B1193 /* Frameworks */,
+				EC123DD023C7107F008B1193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Dott-Test";
+			productName = "Dott-Test";
+			productReference = EC123DD223C7107F008B1193 /* Dott-Test.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC123DEA23C71081008B1193 /* Dott-TestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC123E0223C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestTests" */;
+			buildPhases = (
+				EC123DE723C71081008B1193 /* Sources */,
+				EC123DE823C71081008B1193 /* Frameworks */,
+				EC123DE923C71081008B1193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC123DED23C71081008B1193 /* PBXTargetDependency */,
+			);
+			name = "Dott-TestTests";
+			productName = "Dott-TestTests";
+			productReference = EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EC123DF523C71081008B1193 /* Dott-TestUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC123E0523C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestUITests" */;
+			buildPhases = (
+				EC123DF223C71081008B1193 /* Sources */,
+				EC123DF323C71081008B1193 /* Frameworks */,
+				EC123DF423C71081008B1193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC123DF823C71081008B1193 /* PBXTargetDependency */,
+			);
+			name = "Dott-TestUITests";
+			productName = "Dott-TestUITests";
+			productReference = EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC123DCA23C7107F008B1193 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Atharva Vaidya";
+				TargetAttributes = {
+					EC123DD123C7107F008B1193 = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					EC123DEA23C71081008B1193 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = EC123DD123C7107F008B1193;
+					};
+					EC123DF523C71081008B1193 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = EC123DD123C7107F008B1193;
+					};
+				};
+			};
+			buildConfigurationList = EC123DCD23C7107F008B1193 /* Build configuration list for PBXProject "Dott-Test" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC123DC923C7107F008B1193;
+			productRefGroup = EC123DD323C7107F008B1193 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC123DD123C7107F008B1193 /* Dott-Test */,
+				EC123DEA23C71081008B1193 /* Dott-TestTests */,
+				EC123DF523C71081008B1193 /* Dott-TestUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC123DD023C7107F008B1193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC123DE523C71081008B1193 /* LaunchScreen.storyboard in Resources */,
+				EC123DE223C71081008B1193 /* Assets.xcassets in Resources */,
+				EC123DDD23C7107F008B1193 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DE923C71081008B1193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DF423C71081008B1193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC123DCE23C7107F008B1193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC123DE023C7107F008B1193 /* Dott_Test.xcdatamodeld in Sources */,
+				EC123DDA23C7107F008B1193 /* ViewController.swift in Sources */,
+				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
+				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DE723C71081008B1193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC123DF023C71081008B1193 /* Dott_TestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC123DF223C71081008B1193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC123DFB23C71081008B1193 /* Dott_TestUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC123DED23C71081008B1193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC123DD123C7107F008B1193 /* Dott-Test */;
+			targetProxy = EC123DEC23C71081008B1193 /* PBXContainerItemProxy */;
+		};
+		EC123DF823C71081008B1193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC123DD123C7107F008B1193 /* Dott-Test */;
+			targetProxy = EC123DF723C71081008B1193 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC123DDB23C7107F008B1193 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC123DDC23C7107F008B1193 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC123DE323C71081008B1193 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC123DE423C71081008B1193 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC123DFD23C71081008B1193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC123DFE23C71081008B1193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC123E0023C71081008B1193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EC123E0123C71081008B1193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EC123E0323C71081008B1193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-TestTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dott-Test.app/Dott-Test";
+			};
+			name = Debug;
+		};
+		EC123E0423C71081008B1193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-TestTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dott-Test.app/Dott-Test";
+			};
+			name = Release;
+		};
+		EC123E0623C71081008B1193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-TestUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dott-Test";
+			};
+			name = Debug;
+		};
+		EC123E0723C71081008B1193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y7969DNQN4;
+				INFOPLIST_FILE = "Dott-TestUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Dott-Test";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC123DCD23C7107F008B1193 /* Build configuration list for PBXProject "Dott-Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC123DFD23C71081008B1193 /* Debug */,
+				EC123DFE23C71081008B1193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC123DFF23C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC123E0023C71081008B1193 /* Debug */,
+				EC123E0123C71081008B1193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC123E0223C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC123E0323C71081008B1193 /* Debug */,
+				EC123E0423C71081008B1193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC123E0523C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC123E0623C71081008B1193 /* Debug */,
+				EC123E0723C71081008B1193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EC123DDE23C7107F008B1193 /* Dott_Test.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EC123DDF23C7107F008B1193 /* Dott_Test.xcdatamodel */,
+			);
+			currentVersion = EC123DDF23C7107F008B1193 /* Dott_Test.xcdatamodel */;
+			path = Dott_Test.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = EC123DCA23C7107F008B1193 /* Project object */;
+}
