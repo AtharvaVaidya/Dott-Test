@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol EndPoint {
+protocol APIEndPoint {
     static var base: String { get }
     
     func construct() -> String
 }
 
 struct APIEndPoints {
-    enum Venues: EndPoint {
+    enum Venues: APIEndPoint {
         static let base = "/venues"
         
         case explore

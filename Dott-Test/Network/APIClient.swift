@@ -11,6 +11,7 @@ import Combine
 
 protocol APIClientProtocol {
     func send<T: APIRequest>(request: T) -> AnyPublisher<Data, NetworkError>
+    func send<T: APIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> where T.Response: Codable
 }
 
 class APIClient: APIClientProtocol {
