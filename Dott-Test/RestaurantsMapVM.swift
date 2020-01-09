@@ -8,10 +8,15 @@
 
 import Foundation
 import CoreLocation
+import Combine
+import MapKit
 
-class RestaurantsMapVM {
+class RestaurantsMapVM: ObservableObject {
     private let apiClient = FSAPIClient()
     private let locationManager = LocationManager()
+    @Published private var model = RestaurantsMapModel()
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     init() {
         requestLocationPermissionIfNeeded()
@@ -24,5 +29,36 @@ class RestaurantsMapVM {
         default:
             break
         }
+    }
+    
+    func allRestaurants() -> [MKMapItem] {
+        let placemarks = model.placemarks()
+        let mapItems = placemarks.map { MKMapItem(placemark: $0) }
+        
+        return mapItems
+    }
+    
+    func downloadRestaurants() {
+        guard let coordinates = locationManager.currentLocation else {
+            return
+        }
+        
+        let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig, latitude: Float(coordinates.latitude), longitude: Float(coordinates.longitude))
+        
+        let backgroundQueue = DispatchQueue.global(qos: .default)
+        
+        apiClient.send(request: restaurantsRequest)
+        .receive(on: backgroundQueue)
+        .sink(receiveCompletion: { (_) in
+            
+        }) { (response) in
+            let allVenues = response.response.groups.map{ group -> [Venue] in
+                return group.items.map({ $0.venue })
+            }
+            .joined()
+            
+            self.model.venues = Set(allVenues)
+        }
+        .store(in: &cancellables)
     }
 }

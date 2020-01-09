@@ -16,6 +16,10 @@ class LocationManager: NSObject {
         return CLLocationManager.authorizationStatus()
     }
     
+    var currentLocation: CLLocationCoordinate2D? {
+        return locationManager.location?.coordinate
+    }
+    
     func requestAuthorization() {
         switch authorizationStatus {
         case .notDetermined:
