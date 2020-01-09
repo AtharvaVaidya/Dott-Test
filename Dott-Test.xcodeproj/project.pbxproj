@@ -34,7 +34,6 @@
 		EC2C4D9823C75AA700059D92 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */; };
 		EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */; };
 		EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */; };
-		EC9C50CC23C7B0B8008B6B75 /* ValueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */; };
 		EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +88,6 @@
 		EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVM.swift; sourceTree = "<group>"; };
-		EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTableViewCell.swift; sourceTree = "<group>"; };
 		EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,7 +230,6 @@
 		EC9C50D223C7B2F7008B6B75 /* Generic Components */ = {
 			isa = PBXGroup;
 			children = (
-				EC9C50CB23C7B0B8008B6B75 /* ValueTableViewCell.swift */,
 				EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */,
 				EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */,
 			);
@@ -381,7 +378,6 @@
 				EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */,
 				EC123E0D23C715C2008B1193 /* FSAPIClient.swift in Sources */,
 				EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */,
-				EC9C50CC23C7B0B8008B6B75 /* ValueTableViewCell.swift in Sources */,
 				EC123E1823C720AD008B1193 /* RestaurantsMapVM.swift in Sources */,
 				EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */,
 				EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */,

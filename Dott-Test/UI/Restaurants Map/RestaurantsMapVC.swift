@@ -39,24 +39,29 @@ class RestaurantsMapVC: UIViewController {
         viewModel.requestLocationPermissionIfNeeded()
         viewModel.downloadRestaurantsForCurrentLocation()
         
+        setupBindings()
+        setupMap()
+        setupColors()
+    }
+    
+    private func setupBindings() {
         viewModel.subscribeToModel()
         .receive(on: RunLoop.main)
         .sink { [weak self] (venues) in
             self?.redrawMap()
         }
         .store(in: &cancellables)
-        
-        setupMap()
     }
     
-    func setupMap() {
+    //MARK:- MapView Methods
+    private func setupMap() {
         mapView.delegate = self
         mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
         mapView.camera.centerCoordinateDistance = 10000
         updateMap(currentLocation: viewModel.currentLocation)
     }
     
-    func redrawMap() {
+    private func redrawMap() {
         mapView.removeAnnotations(mapView.annotations)
         
         let venues = viewModel.allRestaurants()
@@ -65,7 +70,7 @@ class RestaurantsMapVC: UIViewController {
         mapView.addAnnotations(annotations)
     }
     
-    func updateMap(currentLocation: CLLocation?) {
+    private func updateMap(currentLocation: CLLocation?) {
         if mapView.userLocation.isUpdating {
             return
         }
@@ -75,8 +80,18 @@ class RestaurantsMapVC: UIViewController {
         }
     }
     
-    @IBAction func downloadRestaurants(_ sender: Any) {
+    //MARK:- IBAction Methods
+    @IBAction private func downloadRestaurants(_ sender: Any) {
         viewModel.downloadRestaurantsFor(view: mapView)
+    }
+    
+    //MARK:- Trait Collection Methods
+    private func setupColors() {
+        view.backgroundColor = .secondarySystemGroupedBackground
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupColors()
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
@@ -112,7 +127,7 @@ extension RestaurantsMapVC: MKMapViewDelegate {
         selectedMarker = nil
     }
     
-    @objc func disclosureButtonPressed() {
+    @objc private func disclosureButtonPressed() {
         guard let selectedMarker = self.selectedMarker,
             let annotation = selectedMarker.annotation as? RestaurantAnnotation else {
                 return
