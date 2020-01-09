@@ -15,15 +15,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-eD-de1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HCV-eD-de1">
                                 <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="HCV-eD-de1" secondAttribute="top" id="1ze-Y7-sar"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HCV-eD-de1" secondAttribute="trailing" id="Fgx-hL-Y8z"/>
-                            <constraint firstItem="HCV-eD-de1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jBD-b6-ZZD"/>
+                            <constraint firstAttribute="trailing" secondItem="HCV-eD-de1" secondAttribute="trailing" id="Fgx-hL-Y8z"/>
+                            <constraint firstItem="HCV-eD-de1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jBD-b6-ZZD"/>
                             <constraint firstItem="HCV-eD-de1" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="rdM-Iv-LxW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

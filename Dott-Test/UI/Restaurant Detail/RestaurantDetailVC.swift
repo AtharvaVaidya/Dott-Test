@@ -29,7 +29,7 @@ class RestaurantDetailVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Details"
+        title = viewModel.title
         
         mapViewHeader.frame.size.height = 200
         

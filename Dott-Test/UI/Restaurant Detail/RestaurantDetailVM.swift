@@ -11,7 +11,7 @@ import MapKit
 class RestaurantDetailVM {
     private let restaurant: Venue
     
-    private let headers: [String] = ["Name", "Address", "Categories"]
+    private let headers: [String] = ["Address", "Categories"]
     
     init(restaurant: Venue) {
         self.restaurant = restaurant
@@ -23,6 +23,10 @@ class RestaurantDetailVM {
     
     var annotation: RestaurantAnnotation {
         return RestaurantAnnotation(restaurant: restaurant)
+    }
+    
+    var title: String {
+        return restaurant.name
     }
     
     var numberOfSections: Int {
@@ -44,10 +48,8 @@ class RestaurantDetailVM {
     func valueForCell(at indexPath: IndexPath) -> String {
         switch indexPath.section {
         case 0:
-            return restaurant.name
-        case 1:
             return restaurant.location.formattedAddress?.joined(separator: "\n") ?? (restaurant.location.address ?? "")
-        case 2:
+        case 1:
             return restaurant.categories.map({ $0.name }).joined(separator: ", ")
         default:
             return ""
