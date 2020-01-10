@@ -69,11 +69,7 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
-        
-        guard location.horizontalAccuracy < 50 else {
+        guard let _ = locations.first else {
             return
         }
         

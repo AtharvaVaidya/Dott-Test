@@ -34,20 +34,8 @@ class RestaurantDetailVC: UITableViewController {
         
         title = viewModel.title
         
-        mapViewHeader.frame.size.height = 200
-        
-        mapViewHeader.setCenter(viewModel.centrePointForMap, animated: false)
-        mapViewHeader.addAnnotation(viewModel.annotation)
-        
-        mapViewHeader.delegate = self
-        
-        //Register an annotation view
-        mapViewHeader.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
-        
-        tableView.tableHeaderView = mapViewHeader
-        tableView.register(TextHeaderView.self, forHeaderFooterViewReuseIdentifier: TextHeaderView.identifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        
+        setupMapView()
+        setupTableView()
         setupColors()
         
         viewModel.downloadDetails()
@@ -59,6 +47,24 @@ class RestaurantDetailVC: UITableViewController {
         super.viewWillAppear(animated)
         
         mapViewHeader.camera.centerCoordinateDistance = 1000
+    }
+    
+    func setupMapView() {
+        mapViewHeader.frame.size.height = 200
+        
+        mapViewHeader.setCenter(viewModel.centrePointForMap, animated: false)
+        mapViewHeader.addAnnotation(viewModel.annotation)
+        
+        mapViewHeader.delegate = self
+        
+        //Register an annotation view
+//        mapViewHeader.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
+    }
+    
+    func setupTableView() {
+        tableView.tableHeaderView = mapViewHeader
+        tableView.register(TextHeaderView.self, forHeaderFooterViewReuseIdentifier: TextHeaderView.identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
     //MARK:- Trait Collection Methods

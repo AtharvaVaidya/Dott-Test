@@ -58,28 +58,21 @@ class RestaurantsMapVC: UIViewController {
 
         func subscribeToCameraChanges() {
             let backgroundQueue = DispatchQueue.global(qos: .default)
+        
+            let waitUntilPublisher = viewModel.subscribeToModel()
             
             $currentMapCentre
-            .drop(untilOutputFrom: viewModel.subscribeToModel())
-            .dropFirst()
+            .drop(untilOutputFrom: waitUntilPublisher)
             //We wait for the user to stay in a place for one second before firing a network request because the user might be moving the map a lot.
             .debounce(for: 1, scheduler: backgroundQueue)
-            .removeDuplicates(by: { (lhs, rhs) -> Bool in
-                //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
-                let marginOfError = (1 / 60.0) / 60.0
-                
-                let latitudeDelta = fabs(lhs.latitude - rhs.latitude)
-                let longitudeDelta = fabs(lhs.longitude - rhs.longitude)
-                
-                let isDuplicate = latitudeDelta < marginOfError && longitudeDelta < marginOfError
-                
-                return isDuplicate
-            })
+            .removeDuplicates(by: ~=)
             .receive(on: RunLoop.main)
             .sink { [weak self] _ in
                 guard let self = self, let mapView = self.mapView else {
                     return
                 }
+                
+                print("Changed camera position")
                 self.viewModel.changedPositionFor(camera: mapView)
             }
             .store(in: &cancellables)
@@ -158,7 +151,9 @@ extension RestaurantsMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        currentMapCentre = mapView.centerCoordinate
+        if !animated {
+            currentMapCentre = mapView.centerCoordinate
+        }
     }
     
     @objc private func disclosureButtonPressed() {
@@ -176,4 +171,16 @@ extension RestaurantsMapVC: MKMapViewDelegate {
 }
 
 
-
+fileprivate extension CLLocationCoordinate2D {
+    static func ~=(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
+        let marginOfError = (1 / 60.0) / 60.0
+        
+        let latitudeDelta = fabs(lhs.latitude - rhs.latitude)
+        let longitudeDelta = fabs(lhs.longitude - rhs.longitude)
+        
+        let isDuplicate = latitudeDelta < marginOfError && longitudeDelta < marginOfError
+        
+        return isDuplicate
+    }
+}
