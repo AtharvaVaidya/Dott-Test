@@ -10,6 +10,7 @@
 		EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */; };
 		EC04FCFD23C7D5C200A69387 /* VenueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */; };
 		EC04FCFF23C7D8A800A69387 /* VenueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFE23C7D8A800A69387 /* VenueResponse.swift */; };
+		EC04FD0123C864B800A69387 /* RestaurantDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */; };
 		EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD523C7107F008B1193 /* AppDelegate.swift */; };
 		EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD723C7107F008B1193 /* SceneDelegate.swift */; };
 		EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DD923C7107F008B1193 /* RestaurantsMapVC.swift */; };
@@ -60,6 +61,7 @@
 		EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
 		EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRequest.swift; sourceTree = "<group>"; };
 		EC04FCFE23C7D8A800A69387 /* VenueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueResponse.swift; sourceTree = "<group>"; };
+		EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailModel.swift; sourceTree = "<group>"; };
 		EC123DD223C7107F008B1193 /* Dott-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dott-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC123DD523C7107F008B1193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC123DD723C7107F008B1193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */,
 				EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */,
+				EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */,
 			);
 			path = "Restaurant Detail";
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				EC123E1223C71640008B1193 /* APIServiceConfig.swift in Sources */,
 				EC123E1823C720AD008B1193 /* RestaurantsMapVM.swift in Sources */,
 				EC123DDA23C7107F008B1193 /* RestaurantsMapVC.swift in Sources */,
+				EC04FD0123C864B800A69387 /* RestaurantDetailModel.swift in Sources */,
 				EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */,
 				EC123DD623C7107F008B1193 /* AppDelegate.swift in Sources */,
 				EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */,

@@ -16,7 +16,7 @@ struct VenueResponse: Codable {
     // MARK: - Meta
     struct Meta: Codable {
         let code: Int
-        let requestID: String
+        let requestID: String?
 
         enum CodingKeys: String, CodingKey {
             case code
@@ -26,25 +26,25 @@ struct VenueResponse: Codable {
 
     // MARK: - Response
     struct Response: Codable {
-        let venue: Venue
+        let venue: VenueDetails
     }
 
     // MARK: - Venue
-    struct Venue: Codable {
+    struct VenueDetails: Codable {
         let id, name: String
         let contact: Contact
         let location: Location
-        let canonicalURL: String
+        let canonicalURL: String?
         let categories: [Category]
-        let url: String
-        let likes: Likes
-        let rating: Double
-        let venueDescription: String
-        let page: Page
-        let shortURL: String
-        let timeZone: String
-        let hours: Hours
-        let bestPhoto: BestPhoto
+        let url: String?
+        let likes: Likes?
+        let rating: Double?
+        let venueDescription: String?
+        let page: Page?
+        let shortURL: String?
+        let timeZone: String?
+        let hours: Hours?
+        let bestPhoto: BestPhoto?
 
         enum CodingKeys: String, CodingKey {
             case id, name, contact, location
@@ -61,11 +61,11 @@ struct VenueResponse: Codable {
     struct BestPhoto: Codable {
         let id: String
         let createdAt: Int
-        let source: Source
-        let bestPhotoPrefix: String
-        let suffix: String
-        let width, height: Int
-        let visibility: String
+        let source: Source?
+        let bestPhotoPrefix: String?
+        let suffix: String?
+        let width, height: Int?
+        let visibility: String?
 
         enum CodingKeys: String, CodingKey {
             case id, createdAt, source
@@ -83,14 +83,14 @@ struct VenueResponse: Codable {
     // MARK: - Category
     struct Category: Codable {
         let id, name, pluralName, shortName: String
-        let icon: Icon
-        let primary: Bool
+        let icon: Icon?
+        let primary: Bool?
     }
 
     // MARK: - Icon
     struct Icon: Codable {
-        let iconPrefix: String
-        let suffix: String
+        let iconPrefix: String?
+        let suffix: String?
 
         enum CodingKeys: String, CodingKey {
             case iconPrefix
@@ -100,22 +100,22 @@ struct VenueResponse: Codable {
 
     // MARK: - Contact
     struct Contact: Codable {
-        let phone, formattedPhone, twitter, instagram: String
-        let facebook, facebookUsername, facebookName: String
+        let phone, formattedPhone, twitter, instagram: String?
+        let facebook, facebookUsername, facebookName: String?
     }
 
     // MARK: - Hours
     struct Hours: Codable {
-        let status: String
-        let isOpen, isLocalHoliday: Bool
-        let timeframes: [Timeframe]
+        let status: String?
+        let isOpen, isLocalHoliday: Bool?
+        let timeframes: [Timeframe]?
     }
 
     // MARK: - Timeframe
     struct Timeframe: Codable {
-        let days: String
-        let includesToday: Bool
-        let timeframeOpen: [Open]
+        let days: String?
+        let includesToday: Bool?
+        let timeframeOpen: [Open]?
 
         enum CodingKeys: String, CodingKey {
             case days, includesToday
@@ -125,7 +125,7 @@ struct VenueResponse: Codable {
 
     // MARK: - Open
     struct Open: Codable {
-        let renderedTime: String
+        let renderedTime: String?
     }
 
     // MARK: - Likes
@@ -136,11 +136,11 @@ struct VenueResponse: Codable {
 
     // MARK: - Location
     struct Location: Codable {
-        let address, crossStreet: String
+        let address, crossStreet: String?
         let lat, lng: Double
-        let postalCode, cc, city, state: String
-        let country: String
-        let formattedAddress: [String]
+        let postalCode, cc, city, state: String?
+        let country: String?
+        let formattedAddress: [String]?
     }
 
     // MARK: - Page

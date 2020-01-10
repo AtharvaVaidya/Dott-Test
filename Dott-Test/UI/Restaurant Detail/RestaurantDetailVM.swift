@@ -7,26 +7,30 @@
 //
 
 import MapKit
+import Combine
 
 class RestaurantDetailVM {
-    private let restaurant: Venue
-    
+    private let model: RestaurantDetailModel
+    private let apiClient = FSAPIClient()
     private let headers: [String] = ["Address", "Categories"]
     
-    init(restaurant: Venue) {
-        self.restaurant = restaurant
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init(model: RestaurantDetailModel) {
+        self.model = model
     }
     
+    //MARK:- View Helper Functions
     var centrePointForMap: CLLocationCoordinate2D {
-        return restaurant.location.coordinates
+        return model.venue.location.coordinates
     }
     
     var annotation: RestaurantAnnotation {
-        return RestaurantAnnotation(restaurant: restaurant)
+        return RestaurantAnnotation(restaurant: model.venue)
     }
     
     var title: String {
-        return restaurant.name
+        return model.venue.name
     }
     
     var numberOfSections: Int {
@@ -46,6 +50,8 @@ class RestaurantDetailVM {
     }
     
     func valueForCell(at indexPath: IndexPath) -> String {
+        let restaurant = model.venue
+        
         switch indexPath.section {
         case 0:
             return restaurant.location.formattedAddress?.joined(separator: "\n") ?? (restaurant.location.address ?? "")
@@ -54,5 +60,27 @@ class RestaurantDetailVM {
         default:
             return ""
         }
+    }
+    
+    //MARK:- Network Functions
+    func downloadDetails() {
+        let request = VenueRequest(serviceConfig: .defaultConfig, eventID: model.venue.id)
+        
+        let backgroundQueue = DispatchQueue.global(qos: .background)
+        
+        apiClient.send(request: request)
+        .receive(on: backgroundQueue)
+        .sink(receiveCompletion: { (result) in
+            switch result {
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            case .finished:
+                print("Finished downloading details")
+                print("Details: \(self.model.details)")
+            }
+        }) { [weak model] (response) in
+            model?.details = response.response.venue
+        }
+        .store(in: &cancellables)
     }
 }

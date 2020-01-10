@@ -46,6 +46,8 @@ class RestaurantDetailVC: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         setupColors()
+        
+        viewModel.downloadDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,8 +106,10 @@ class RestaurantDetailVC: UITableViewController {
 
 extension RestaurantDetailVC {
     static func makeWith(restaurant: Venue) -> RestaurantDetailVC {
-        let viewModel = RestaurantDetailVM(restaurant: restaurant)
+        let model = RestaurantDetailModel(venue: restaurant)
+        let viewModel = RestaurantDetailVM(model: model)
         let detailVC = RestaurantDetailVC(viewModel: viewModel)
+        
         return detailVC
     }
 }
