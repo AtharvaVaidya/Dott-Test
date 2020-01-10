@@ -38,6 +38,7 @@ class RestaurantsMapVM: ObservableObject {
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }
+    
     private func downloadRestaurants(for coordinates: CLLocationCoordinate2D, radius: Int = 3000) {
         let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig,
                                                       section: .food,
