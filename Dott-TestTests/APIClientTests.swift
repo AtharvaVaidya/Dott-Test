@@ -16,7 +16,6 @@ class APIClientTests: XCTestCase {
     func testExploreRestaurants() {
         let apiClient = FSAPIClient()
         
-        //40.7128° N, 74.0060° W
         let exploreRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig,
                                                   httpMethod: .get,
                                                   body: nil,
@@ -53,7 +52,6 @@ class APIClientTests: XCTestCase {
     func testGetVenueDetails() {
         let apiClient = FSAPIClient()
         
-        //40.7128° N, 74.0060° W
         let exploreRequest = VenueRequest(serviceConfig: .defaultConfig,
                                           eventID: "53235762498e36c1448965bf")
         

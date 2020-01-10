@@ -21,7 +21,6 @@
 		EC123DE223C71081008B1193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC123DE123C71081008B1193 /* Assets.xcassets */; };
 		EC123DE523C71081008B1193 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC123DE323C71081008B1193 /* LaunchScreen.storyboard */; };
 		EC123DF023C71081008B1193 /* Dott_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DEF23C71081008B1193 /* Dott_TestTests.swift */; };
-		EC123DFB23C71081008B1193 /* Dott_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */; };
 		EC123E0923C712DE008B1193 /* ExploreVenuesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0823C712DE008B1193 /* ExploreVenuesResponse.swift */; };
 		EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0A23C71552008B1193 /* APIRequest.swift */; };
 		EC123E0D23C715C2008B1193 /* FSAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E0C23C715C2008B1193 /* FSAPIClient.swift */; };
@@ -52,13 +51,6 @@
 			remoteGlobalIDString = EC123DD123C7107F008B1193;
 			remoteInfo = "Dott-Test";
 		};
-		EC123DF723C71081008B1193 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EC123DCA23C7107F008B1193 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC123DD123C7107F008B1193;
-			remoteInfo = "Dott-Test";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -80,9 +72,6 @@
 		EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dott-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC123DEF23C71081008B1193 /* Dott_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dott_TestTests.swift; sourceTree = "<group>"; };
 		EC123DF123C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dott-TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dott_TestUITests.swift; sourceTree = "<group>"; };
-		EC123DFC23C71081008B1193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC123E0823C712DE008B1193 /* ExploreVenuesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreVenuesResponse.swift; sourceTree = "<group>"; };
 		EC123E0A23C71552008B1193 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		EC123E0C23C715C2008B1193 /* FSAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSAPIClient.swift; sourceTree = "<group>"; };
@@ -114,13 +103,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EC123DE823C71081008B1193 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC123DF323C71081008B1193 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,7 +148,6 @@
 			children = (
 				EC123DD423C7107F008B1193 /* Dott-Test */,
 				EC123DEE23C71081008B1193 /* Dott-TestTests */,
-				EC123DF923C71081008B1193 /* Dott-TestUITests */,
 				EC123DD323C7107F008B1193 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,7 +157,6 @@
 			children = (
 				EC123DD223C7107F008B1193 /* Dott-Test.app */,
 				EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */,
-				EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,15 +185,6 @@
 				EC123DF123C71081008B1193 /* Info.plist */,
 			);
 			path = "Dott-TestTests";
-			sourceTree = "<group>";
-		};
-		EC123DF923C71081008B1193 /* Dott-TestUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EC123DFA23C71081008B1193 /* Dott_TestUITests.swift */,
-				EC123DFC23C71081008B1193 /* Info.plist */,
-			);
-			path = "Dott-TestUITests";
 			sourceTree = "<group>";
 		};
 		EC123E1023C71612008B1193 /* Network */ = {
@@ -319,24 +290,6 @@
 			productReference = EC123DEB23C71081008B1193 /* Dott-TestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EC123DF523C71081008B1193 /* Dott-TestUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC123E0523C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestUITests" */;
-			buildPhases = (
-				EC123DF223C71081008B1193 /* Sources */,
-				EC123DF323C71081008B1193 /* Frameworks */,
-				EC123DF423C71081008B1193 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC123DF823C71081008B1193 /* PBXTargetDependency */,
-			);
-			name = "Dott-TestUITests";
-			productName = "Dott-TestUITests";
-			productReference = EC123DF623C71081008B1193 /* Dott-TestUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -351,10 +304,6 @@
 						CreatedOnToolsVersion = 11.3;
 					};
 					EC123DEA23C71081008B1193 = {
-						CreatedOnToolsVersion = 11.3;
-						TestTargetID = EC123DD123C7107F008B1193;
-					};
-					EC123DF523C71081008B1193 = {
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = EC123DD123C7107F008B1193;
 					};
@@ -375,7 +324,6 @@
 			targets = (
 				EC123DD123C7107F008B1193 /* Dott-Test */,
 				EC123DEA23C71081008B1193 /* Dott-TestTests */,
-				EC123DF523C71081008B1193 /* Dott-TestUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -392,13 +340,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EC123DE923C71081008B1193 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC123DF423C71081008B1193 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -453,14 +394,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC123DF223C71081008B1193 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EC123DFB23C71081008B1193 /* Dott_TestUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -468,11 +401,6 @@
 			isa = PBXTargetDependency;
 			target = EC123DD123C7107F008B1193 /* Dott-Test */;
 			targetProxy = EC123DEC23C71081008B1193 /* PBXContainerItemProxy */;
-		};
-		EC123DF823C71081008B1193 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC123DD123C7107F008B1193 /* Dott-Test */;
-			targetProxy = EC123DF723C71081008B1193 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -692,46 +620,6 @@
 			};
 			name = Release;
 		};
-		EC123E0623C71081008B1193 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y7969DNQN4;
-				INFOPLIST_FILE = "Dott-TestUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Dott-Test";
-			};
-			name = Debug;
-		};
-		EC123E0723C71081008B1193 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y7969DNQN4;
-				INFOPLIST_FILE = "Dott-TestUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.atharva.Dott-TestUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Dott-Test";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -758,15 +646,6 @@
 			buildConfigurations = (
 				EC123E0323C71081008B1193 /* Debug */,
 				EC123E0423C71081008B1193 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC123E0523C71081008B1193 /* Build configuration list for PBXNativeTarget "Dott-TestUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC123E0623C71081008B1193 /* Debug */,
-				EC123E0723C71081008B1193 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
