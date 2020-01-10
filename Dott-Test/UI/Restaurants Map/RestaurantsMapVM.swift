@@ -35,6 +35,15 @@ class RestaurantsMapVM: ObservableObject {
         return locationManager.currentLocation
     }
     
+    var shouldShowPermissionError: Bool {
+        switch locationManager.authorizationStatus {
+        case .denied, .restricted:
+            return true
+        default:
+            return false
+        }
+    }
+    
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }

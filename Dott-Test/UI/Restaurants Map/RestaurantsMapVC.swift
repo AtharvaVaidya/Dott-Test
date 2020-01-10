@@ -21,6 +21,7 @@ class RestaurantsMapVC: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
     
     private var selectedMarker: MKAnnotationView?
+    
     @Published private var currentMapCentre: CLLocationCoordinate2D
     
     init?(coder: NSCoder, viewModel: RestaurantsMapVM) {
@@ -44,6 +45,12 @@ class RestaurantsMapVC: UIViewController {
         setupBindings()
         setupMap()
         setupColors()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showLocationPermissionAlertIfNeeded()
     }
     
     private func setupBindings() {
@@ -72,7 +79,6 @@ class RestaurantsMapVC: UIViewController {
                     return
                 }
                 
-                print("Changed camera position")
                 self.viewModel.changedPositionFor(camera: mapView)
             }
             .store(in: &cancellables)
@@ -108,6 +114,12 @@ class RestaurantsMapVC: UIViewController {
         }
     }
     
+    private func showLocationPermissionAlertIfNeeded() {
+        if viewModel.shouldShowPermissionError {
+            showError(title: "Error", message: "Please provide location permissions to search for restaurants")
+        }
+    }
+    
     //MARK:- Trait Collection Methods
     private func setupColors() {
         view.backgroundColor = .secondarySystemGroupedBackground
@@ -115,6 +127,18 @@ class RestaurantsMapVC: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         setupColors()
+    }
+    
+    //MARK:- Error Alert
+    private func showError(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 extension RestaurantsMapVC: MKMapViewDelegate {
@@ -151,6 +175,7 @@ extension RestaurantsMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        //Only updating the current map centre value if the user moved the map.
         if !animated {
             currentMapCentre = mapView.centerCoordinate
         }
