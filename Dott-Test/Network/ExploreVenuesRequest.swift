@@ -11,9 +11,9 @@ import Foundation
 class ExploreVenuesRequest: FSAPIRequest {
     typealias Response = ExploreVenuesResponse
     
-    static let endPoint: APIEndPoint = APIEndPoints.Venues.explore
     static let authenticationType: FSRequestAuthenticationType = .userless
     
+    let endPoint: APIEndPoint = APIEndPoints.Venues.explore
     let serviceConfig: APIServiceConfig
     
     private let latitude: Float
@@ -98,7 +98,7 @@ class ExploreVenuesRequest: FSAPIRequest {
     
     func requestURL(queryItems: [URLQueryItem]) -> URL? {
         let baseURL = serviceConfig.url.absoluteString
-        let endPointString = ExploreVenuesRequest.endPoint.construct()
+        let endPointString = endPoint.construct()
         let urlString = baseURL + endPointString
         
         guard var urlComponents = URLComponents(string: urlString) else {
@@ -114,7 +114,7 @@ class ExploreVenuesRequest: FSAPIRequest {
         return url
     }
     
-    private func getCurrentVersion() -> String {
+    func getCurrentVersion() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "YYYYMMDD"
         
