@@ -28,7 +28,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurants" id="vOj-cE-PuG"/>
+                    <navigationItem key="navigationItem" title="Restaurants" id="vOj-cE-PuG">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="location.fill" catalog="system" id="oM6-af-dmX">
+                            <connections>
+                                <action selector="goToCurrentLocationPressed:" destination="BYZ-38-t0r" id="85J-NL-XbH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="HCV-eD-de1" id="plM-1N-hcR"/>
                     </connections>
@@ -56,4 +62,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location.fill" catalog="system" width="64" height="56"/>
+    </resources>
 </document>

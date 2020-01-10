@@ -19,6 +19,7 @@ class RestaurantsMapVC: UIViewController {
     private var viewModel: RestaurantsMapVM
     
     private var cancellables: Set<AnyCancellable> = []
+    private var locationPermissionsListener: AnyCancellable?
     
     private var selectedMarker: MKAnnotationView?
     
@@ -45,12 +46,24 @@ class RestaurantsMapVC: UIViewController {
         setupBindings()
         setupMap()
         setupColors()
+        showLocationPermissionAlertIfNeeded()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    @IBAction func goToCurrentLocationPressed(_ sender: Any) {
+        if viewModel.shouldShowPermissionError {
+            showLocationPermissionAlertIfNeeded()
+            return
+        } else if viewModel.locationPermissionUndetermined {
+            viewModel.requestLocationPermissionIfNeeded()
+            subscribeToPermissionUpdate()
+        }
         
-        showLocationPermissionAlertIfNeeded()
+        goToCurrentLocation()
+    }
+    
+    func goToCurrentLocation() {
+        updateMap(currentLocation: viewModel.currentLocation)
+        viewModel.downloadRestaurantsForCurrentLocation()
     }
     
     private func setupBindings() {
@@ -62,11 +75,26 @@ class RestaurantsMapVC: UIViewController {
             }
             .store(in: &cancellables)
         }
-
         func subscribeToCameraChanges() {
             let backgroundQueue = DispatchQueue.global(qos: .default)
         
-            let waitUntilPublisher = viewModel.subscribeToModel()
+            let modelUpdatePublisher
+                = viewModel.subscribeToModel()
+                    .map({ _ in })
+                    .eraseToAnyPublisher()
+            
+            let locationPermissionPublisher
+                = viewModel.subscribeToLocationPermissionChanges()
+                    .map({ _ in })
+                    .eraseToAnyPublisher()
+            
+            let currentMapCentrePublisher
+                = $currentMapCentre
+                    .map({ _ in })
+                    .eraseToAnyPublisher()
+            
+            //We wait until one of these 3 publishes a value to start calling the API for restaurants at a certain location on a map.
+            let waitUntilPublisher = Publishers.Merge3(modelUpdatePublisher, locationPermissionPublisher, currentMapCentrePublisher)
             
             $currentMapCentre
             .drop(untilOutputFrom: waitUntilPublisher)
@@ -83,10 +111,29 @@ class RestaurantsMapVC: UIViewController {
             }
             .store(in: &cancellables)
         }
-        
+
         subscribeToModel()
         subscribeToCameraChanges()
     }
+    
+    func subscribeToPermissionUpdate() {
+        self.locationPermissionsListener
+            = viewModel.subscribeToLocationPermissionChanges()
+                .receive(on: RunLoop.main)
+                .sink { [weak self] (status) in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    switch status {
+                    case .authorizedAlways, .authorizedWhenInUse:
+                        self.goToCurrentLocation()
+                    default:
+                        break
+                    }
+                }
+    }
+    
     
     func fetchData() {
         viewModel.downloadRestaurantsForCurrentLocation()

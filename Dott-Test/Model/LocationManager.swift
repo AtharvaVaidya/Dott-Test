@@ -13,17 +13,13 @@ import Combine
 class LocationManager: NSObject {
     private let locationManager = CLLocationManager()
     
-    var authorizationStatus: CLAuthorizationStatus {
-        return CLLocationManager.authorizationStatus()
-    }
+    @Published var authorizationStatus: CLAuthorizationStatus = CLLocationManager.authorizationStatus()
     
     var currentCoordinates: CLLocationCoordinate2D? {
         return currentLocation?.coordinate
     }
     
     @Published var currentLocation: CLLocation?
-    
-    private var locationUpdatePublisher = PassthroughSubject<CLLocation?, Never>()
     
     override init() {
         super.init()
@@ -44,35 +40,23 @@ class LocationManager: NSObject {
     func startMonitoringLocation() {
         locationManager.startUpdatingLocation()
     }
-    
-    func subscribeToLocationChanges<T: Subscriber>(subscriber: T) where T.Input == CLLocation?, T.Failure == Never {
-        locationUpdatePublisher.subscribe(subscriber)
-    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .authorizedAlways:
-            break
-        case .authorizedWhenInUse:
-            break
-        case .notDetermined:
-            break
-        case .restricted:
-            break
-        case .denied:
+        case .authorizedAlways, .authorizedWhenInUse:
+            startMonitoringLocation()
+        case .restricted, .denied, .notDetermined:
             break
         @unknown default:
-            break
+            startMonitoringLocation()
         }
+        
+        authorizationStatus = status
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let _ = locations.first else {
-            return
-        }
-        
         currentLocation = manager.location
-    }    
+    }
 }

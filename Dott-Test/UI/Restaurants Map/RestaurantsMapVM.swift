@@ -11,7 +11,7 @@ import CoreLocation
 import Combine
 import MapKit
 
-class RestaurantsMapVM: ObservableObject {
+class RestaurantsMapVM {
     private let apiClient = FSAPIClient()
     private let locationManager = LocationManager()
     private var model = RestaurantsMapModel()
@@ -20,6 +20,25 @@ class RestaurantsMapVM: ObservableObject {
         
     init() {
         requestLocationPermissionIfNeeded()
+        
+        locationManager.$authorizationStatus
+            .sink { [weak self] (authorizationStatus) in
+            guard let self = self else {
+                return
+            }
+            
+            switch authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                self.downloadRestaurantsForCurrentLocation()
+            case .notDetermined:
+                self.requestLocationPermissionIfNeeded()
+            case .denied, .restricted:
+                break
+            @unknown default:
+                break
+            }
+        }
+        .store(in: &cancellables)
     }
     
     func requestLocationPermissionIfNeeded() {
@@ -42,6 +61,10 @@ class RestaurantsMapVM: ObservableObject {
         default:
             return false
         }
+    }
+    
+    var locationPermissionUndetermined: Bool {
+        return locationManager.authorizationStatus == .notDetermined
     }
     
     func allRestaurants() -> Set<Venue> {
@@ -111,5 +134,9 @@ class RestaurantsMapVM: ObservableObject {
     
     func subscribeToModel() -> AnyPublisher<Set<Venue>, Never> {
         return model.modelChangedPublisher.eraseToAnyPublisher()
+    }
+    
+    func subscribeToLocationPermissionChanges() -> AnyPublisher<CLAuthorizationStatus, Never> {
+        return locationManager.$authorizationStatus.eraseToAnyPublisher()
     }
 }
