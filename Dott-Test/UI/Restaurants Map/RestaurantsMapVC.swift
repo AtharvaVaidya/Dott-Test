@@ -147,10 +147,21 @@ class RestaurantsMapVC: UIViewController {
     }
     
     private func redrawMap() {
-        mapView.removeAnnotations(mapView.annotations)
+        let newVenues = viewModel.allRestaurants()
+
+        let annotationsToRemove
+            = mapView.annotations
+                .compactMap({ ($0 as? RestaurantAnnotation) })
+                .filter({ !newVenues.contains($0.restaurant) })
         
-        let venues = viewModel.allRestaurants()
-        let annotations = venues.map({ RestaurantAnnotation(restaurant: $0) })
+        mapView.removeAnnotations(annotationsToRemove)
+        
+        let annotationsToAdd: Set<Venue>
+            = newVenues.filter({ venue -> Bool in
+                !annotationsToRemove.contains(where: { $0.restaurant == venue })
+            })
+        
+        let annotations = annotationsToAdd.map({ RestaurantAnnotation(restaurant: $0) })
                 
         mapView.addAnnotations(annotations)
     }
