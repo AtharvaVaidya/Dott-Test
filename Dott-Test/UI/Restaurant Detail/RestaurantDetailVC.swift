@@ -37,10 +37,9 @@ class RestaurantDetailVC: UITableViewController {
         setupMapView()
         setupTableView()
         setupColors()
-        
-        viewModel.downloadDetails()
-        
         setupBindings()
+        
+        fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +48,7 @@ class RestaurantDetailVC: UITableViewController {
         mapViewHeader.camera.centerCoordinateDistance = 1000
     }
     
+    //MARK:- View Setup Methods
     func setupMapView() {
         mapViewHeader.frame.size.height = 200
         
@@ -56,9 +56,6 @@ class RestaurantDetailVC: UITableViewController {
         mapViewHeader.addAnnotation(viewModel.annotation)
         
         mapViewHeader.delegate = self
-        
-        //Register an annotation view
-//        mapViewHeader.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
     }
     
     func setupTableView() {
@@ -85,6 +82,11 @@ class RestaurantDetailVC: UITableViewController {
         }
         .store(in: &cancellables)
     }
+    
+    //MARK:- Network
+    func fetchData() {
+        viewModel.downloadDetails()
+    }
 }
 
 extension RestaurantDetailVC {
@@ -107,6 +109,11 @@ extension RestaurantDetailVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
+        return configure(cell: cell,
+                         indexPath: indexPath)
+    }
+    
+    func configure(cell: UITableViewCell, indexPath: IndexPath) -> UITableViewCell {
         cell.textLabel?.text = viewModel.valueForCell(at: indexPath)
         cell.textLabel?.textColor = .label
         cell.textLabel?.font = .preferredFont(forTextStyle: .body)

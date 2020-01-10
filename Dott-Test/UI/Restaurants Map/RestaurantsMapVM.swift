@@ -20,27 +20,10 @@ class RestaurantsMapVM {
         
     init() {
         requestLocationPermissionIfNeeded()
-        
-        locationManager.$authorizationStatus
-            .sink { [weak self] (authorizationStatus) in
-            guard let self = self else {
-                return
-            }
-            
-            switch authorizationStatus {
-            case .authorizedAlways, .authorizedWhenInUse:
-                self.downloadRestaurantsForCurrentLocation()
-            case .notDetermined:
-                self.requestLocationPermissionIfNeeded()
-            case .denied, .restricted:
-                break
-            @unknown default:
-                break
-            }
-        }
-        .store(in: &cancellables)
+        subscribeToPermissionChanges()
     }
     
+    //MARK:- Location Manager Helper Methods
     func requestLocationPermissionIfNeeded() {
         switch locationManager.authorizationStatus {
         case .notDetermined:
@@ -67,10 +50,34 @@ class RestaurantsMapVM {
         return locationManager.authorizationStatus == .notDetermined
     }
     
+    //MARK:- Helpers for View
     func allRestaurants() -> Set<Venue> {
         return model.venues
     }
     
+    //MARK:- Bindings
+    private func subscribeToPermissionChanges() {
+        locationManager.$authorizationStatus
+            .sink { [weak self] (authorizationStatus) in
+            guard let self = self else {
+                return
+            }
+            
+            switch authorizationStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                break
+            case .notDetermined:
+                self.requestLocationPermissionIfNeeded()
+            case .denied, .restricted:
+                break
+            @unknown default:
+                break
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
+    //MARK:- Network Methods
     private func downloadRestaurants(for coordinates: CLLocationCoordinate2D, radius: Int = 3000) {
         let restaurantsRequest = ExploreVenuesRequest(serviceConfig: .defaultConfig,
                                                       section: .food,
@@ -128,15 +135,16 @@ class RestaurantsMapVM {
         downloadRestaurants(for: center, radius: radius)
     }
     
-    func subscribeToLocationChanges() -> AnyPublisher<CLLocation?, Never> {
-        return locationManager.$currentLocation.eraseToAnyPublisher()
-    }
-    
-    func subscribeToModel() -> AnyPublisher<Set<Venue>, Never> {
+    //MARK:- Publishers
+    func modelChangedPublisher() -> AnyPublisher<Set<Venue>, Never> {
         return model.modelChangedPublisher.eraseToAnyPublisher()
     }
     
-    func subscribeToLocationPermissionChanges() -> AnyPublisher<CLAuthorizationStatus, Never> {
+    func permissionChangedPublisher() -> AnyPublisher<CLAuthorizationStatus, Never> {
         return locationManager.$authorizationStatus.eraseToAnyPublisher()
+    }
+    
+    func locationChangedPublisher() -> AnyPublisher<CLLocation?, Never> {
+        return locationManager.$currentLocation.eraseToAnyPublisher()
     }
 }

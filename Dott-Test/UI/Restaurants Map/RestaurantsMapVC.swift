@@ -19,10 +19,11 @@ class RestaurantsMapVC: UIViewController {
     private var viewModel: RestaurantsMapVM
     
     private var cancellables: Set<AnyCancellable> = []
-    private var locationPermissionsListener: AnyCancellable?
     
+    /// The current selected marker.
     private var selectedMarker: MKAnnotationView?
     
+    /// The coordinates of the centre point of the `MKMapView`.
     @Published private var currentMapCentre: CLLocationCoordinate2D
     
     init?(coder: NSCoder, viewModel: RestaurantsMapVM) {
@@ -66,25 +67,27 @@ class RestaurantsMapVC: UIViewController {
         viewModel.downloadRestaurantsForCurrentLocation()
     }
     
+    //MARK:- Bindings
     private func setupBindings() {
         func subscribeToModel() {
-            viewModel.subscribeToModel()
+            viewModel.modelChangedPublisher()
             .receive(on: RunLoop.main)
             .sink { [weak self] (venues) in
                 self?.redrawMap()
             }
             .store(in: &cancellables)
         }
+    
         func subscribeToCameraChanges() {
             let backgroundQueue = DispatchQueue.global(qos: .default)
         
             let modelUpdatePublisher
-                = viewModel.subscribeToModel()
+                = viewModel.modelChangedPublisher()
                     .map({ _ in })
                     .eraseToAnyPublisher()
             
             let locationPermissionPublisher
-                = viewModel.subscribeToLocationPermissionChanges()
+                = viewModel.permissionChangedPublisher()
                     .map({ _ in })
                     .eraseToAnyPublisher()
             
@@ -117,24 +120,25 @@ class RestaurantsMapVC: UIViewController {
     }
     
     func subscribeToPermissionUpdate() {
-        self.locationPermissionsListener
-            = viewModel.subscribeToLocationPermissionChanges()
-                .receive(on: RunLoop.main)
-                .sink { [weak self] (status) in
-                    guard let self = self else {
-                        return
-                    }
-                    
-                    switch status {
-                    case .authorizedAlways, .authorizedWhenInUse:
-                        self.goToCurrentLocation()
-                    default:
-                        break
-                    }
-                }
+        viewModel.permissionChangedPublisher()
+        .receive(on: RunLoop.main)
+        .prefix(1)
+        .sink { [weak self] (status) in
+            guard let self = self else {
+                return
+            }
+            
+            switch status {
+            case .authorizedAlways, .authorizedWhenInUse:
+                self.goToCurrentLocation()
+            default:
+                break
+            }
+        }
+        .store(in: &cancellables)
     }
     
-    
+    //MARK:- Network
     func fetchData() {
         viewModel.downloadRestaurantsForCurrentLocation()
     }
@@ -174,7 +178,7 @@ class RestaurantsMapVC: UIViewController {
     
     private func showLocationPermissionAlertIfNeeded() {
         if viewModel.shouldShowPermissionError {
-            showError(title: "Error", message: "Please provide location permissions to search for restaurants")
+            showError(title: "Error", message: "Please provide location permissions to search for restaurants.")
         }
     }
     
@@ -199,6 +203,7 @@ class RestaurantsMapVC: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
+
 extension RestaurantsMapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? RestaurantAnnotation else {
