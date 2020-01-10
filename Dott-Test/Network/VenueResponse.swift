@@ -51,10 +51,6 @@ struct VenueResponse: Codable {
             case shortURL
             case timeZone, hours
         }
-        
-        subscript<T>(dynamicMember keyPath: KeyPath<VenueDetails, T?>) -> T? {
-            return self[keyPath: keyPath]
-        }
     }
 
     // MARK: - Category
