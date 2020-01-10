@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Combine
 
 class RestaurantDetailVC: UITableViewController {
     private let mapViewHeader: MKMapView = MKMapView()
@@ -15,6 +16,8 @@ class RestaurantDetailVC: UITableViewController {
     private let viewModel: RestaurantDetailVM
     
     private let cellIdentifier: String = "RestaurantDetailCell"
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     init(viewModel: RestaurantDetailVM) {
         self.viewModel = viewModel
@@ -48,6 +51,8 @@ class RestaurantDetailVC: UITableViewController {
         setupColors()
         
         viewModel.downloadDetails()
+        
+        setupBindings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,10 +61,27 @@ class RestaurantDetailVC: UITableViewController {
         mapViewHeader.camera.centerCoordinateDistance = 1000
     }
     
+    //MARK:- Trait Collection Methods
     func setupColors() {
-        tableView.backgroundColor = .secondarySystemBackground
+        tableView.backgroundColor = .systemGroupedBackground
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupColors()
+    }
+    
+    //MARK:- Binding Methods
+    func setupBindings() {
+        viewModel.bindToModel()
+        .receive(on: RunLoop.main)
+        .sink { [weak tableView] in
+            tableView?.reloadData()
+        }
+        .store(in: &cancellables)
+    }
+}
+
+extension RestaurantDetailVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -83,8 +105,8 @@ class RestaurantDetailVC: UITableViewController {
         cell.textLabel?.textColor = .label
         cell.textLabel?.font = .preferredFont(forTextStyle: .body)
         cell.textLabel?.numberOfLines = 0
-        cell.contentView.backgroundColor = .tertiarySystemGroupedBackground
-        cell.backgroundColor = .tertiarySystemGroupedBackground
+        cell.contentView.backgroundColor = .secondarySystemGroupedBackground
+        cell.backgroundColor = .secondarySystemGroupedBackground
         
         return cell
     }
@@ -97,10 +119,6 @@ class RestaurantDetailVC: UITableViewController {
         }
         
         return view
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
     }
 }
 

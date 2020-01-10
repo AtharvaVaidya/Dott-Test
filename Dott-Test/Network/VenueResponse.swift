@@ -37,10 +37,8 @@ struct VenueResponse: Codable {
         let canonicalURL: String?
         let categories: [Category]
         let url: String?
-        let likes: Likes?
         let rating: Double?
         let venueDescription: String?
-        let page: Page?
         let shortURL: String?
         let timeZone: String?
         let hours: Hours?
@@ -48,9 +46,8 @@ struct VenueResponse: Codable {
         enum CodingKeys: String, CodingKey {
             case id, name, contact, location
             case canonicalURL
-            case categories, url, likes, rating
+            case categories, url, rating
             case venueDescription
-            case page
             case shortURL
             case timeZone, hours
         }
@@ -108,12 +105,6 @@ struct VenueResponse: Codable {
         let renderedTime: String?
     }
 
-    // MARK: - Likes
-    struct Likes: Codable {
-        let count: Int
-        let summary: String
-    }
-
     // MARK: - Location
     struct Location: Codable {
         let address, crossStreet: String?
@@ -121,21 +112,5 @@ struct VenueResponse: Codable {
         let postalCode, cc, city, state: String?
         let country: String?
         let formattedAddress: [String]?
-    }
-
-    // MARK: - Page
-    struct Page: Codable {
-        let pageInfo: PageInfo
-    }
-
-    // MARK: - PageInfo
-    struct PageInfo: Codable {
-        let pageInfoDescription: String
-        let banner: String
-
-        enum CodingKeys: String, CodingKey {
-            case pageInfoDescription
-            case banner
-        }
     }
 }

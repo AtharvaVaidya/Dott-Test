@@ -15,10 +15,7 @@ class RestaurantDetailVM {
     private let model: RestaurantDetailModel
     private let apiClient = FSAPIClient()
     private let headers: [String] = ["Address", "Categories"]
-    private let keyPathsToDetails: [AnyKeyPath] = [\VenueDetails.venueDescription,
-                                                \VenueDetails.contact,
-                                                \VenueDetails.hours,
-                                                \VenueDetails.rating]
+    private let detailHeaders: [String] = ["Contact Information", "Hours", "Rating"]
     
     private var cancellables: Set<AnyCancellable> = []
 
@@ -44,7 +41,7 @@ class RestaurantDetailVM {
             return headers.count
         }
         
-        return headers.count + keyPathsToDetails.count
+        return headers.count + detailHeaders.count
     }
     
     func numberOfRows(in section: Int) -> Int {
@@ -52,11 +49,17 @@ class RestaurantDetailVM {
     }
     
     func header(for section: Int) -> String {
-        guard headers.indices.contains(section) else {
+        if headers.indices.contains(section) {
+            return headers[section]
+        }
+        
+        let index = section - headers.count
+        
+        guard detailHeaders.indices.contains(index) else {
             return ""
         }
         
-        return headers[section]
+        return detailHeaders[index]
     }
     
     func valueForCell(at indexPath: IndexPath) -> String {
@@ -77,10 +80,8 @@ class RestaurantDetailVM {
         
         switch indexPath.section {
         case 2:
-            return details.venueDescription ?? "—"
-        case 3:
             return details.contact.formattedPhone ?? "—"
-        case 4:
+        case 3:
             guard let timeframes = details.hours?.timeframes else {
                 return ""
             }
@@ -99,14 +100,22 @@ class RestaurantDetailVM {
                     })
                     .joined(separator: "\n")
             
-            return "\(daysOpen)\n\(hours)"
+            if daysOpen.isEmpty && hours.isEmpty {
+                return "—"
+            }
             
-        case 5:
+            if hours.isEmpty {
+                return "\(daysOpen)"
+            } else {
+                return "\(daysOpen)\n\(hours)"
+            }
+            
+        case 4:
             guard let rating = details.rating else {
                 return "—"
             }
             
-            return "\(rating)"
+            return "\(rating) out of 10"
         default:
             return ""
         }
