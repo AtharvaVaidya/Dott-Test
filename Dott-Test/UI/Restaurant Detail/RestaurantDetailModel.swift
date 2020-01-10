@@ -12,7 +12,7 @@ class RestaurantDetailModel {
     typealias VenueDetails = VenueResponse.VenueDetails
     
     let venue: Venue
-    var details: VenueDetails?
+    @Published var details: VenueDetails?
     
     init(venue: Venue, details: VenueDetails? = nil) {
         self.venue = venue

@@ -10,12 +10,18 @@ import MapKit
 import Combine
 
 class RestaurantDetailVM {
+    typealias VenueDetails = VenueResponse.VenueDetails
+    
     private let model: RestaurantDetailModel
     private let apiClient = FSAPIClient()
     private let headers: [String] = ["Address", "Categories"]
+    private let keyPathsToDetails: [AnyKeyPath] = [\VenueDetails.venueDescription,
+                                                \VenueDetails.contact,
+                                                \VenueDetails.hours,
+                                                \VenueDetails.rating]
     
     private var cancellables: Set<AnyCancellable> = []
-    
+
     init(model: RestaurantDetailModel) {
         self.model = model
     }
@@ -34,7 +40,11 @@ class RestaurantDetailVM {
     }
     
     var numberOfSections: Int {
-        return headers.count
+        guard let _ = model.details else {
+            return headers.count
+        }
+        
+        return headers.count + keyPathsToDetails.count
     }
     
     func numberOfRows(in section: Int) -> Int {
@@ -51,15 +61,63 @@ class RestaurantDetailVM {
     
     func valueForCell(at indexPath: IndexPath) -> String {
         let restaurant = model.venue
-        
+                
         switch indexPath.section {
         case 0:
             return restaurant.location.formattedAddress?.joined(separator: "\n") ?? (restaurant.location.address ?? "")
         case 1:
             return restaurant.categories.map({ $0.name }).joined(separator: ", ")
         default:
+            break
+        }
+        
+        guard let details = model.details else {
             return ""
         }
+        
+        switch indexPath.section {
+        case 2:
+            return details.venueDescription ?? "—"
+        case 3:
+            return details.contact.formattedPhone ?? "—"
+        case 4:
+            guard let timeframes = details.hours?.timeframes else {
+                return ""
+            }
+            
+            let daysOpen
+                = timeframes
+                .compactMap({ $0.days })
+                .joined(separator: ", ")
+            
+            let hours
+                = timeframes
+                    .compactMap({
+                        $0.timeframeOpen?
+                            .compactMap({ $0.renderedTime })
+                            .joined(separator: ", ")
+                    })
+                    .joined(separator: "\n")
+            
+            return "\(daysOpen)\n\(hours)"
+            
+        case 5:
+            guard let rating = details.rating else {
+                return "—"
+            }
+            
+            return "\(rating)"
+        default:
+            return ""
+        }
+    }
+    
+    //MARK:- Binding Methods
+    func bindToModel() -> AnyPublisher<Void, Never> {
+        return
+            model.$details
+            .map { _ in }
+            .eraseToAnyPublisher()
     }
     
     //MARK:- Network Functions
