@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */; };
-		EC04FCFD23C7D5C200A69387 /* VenueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */; };
+		EC04FCFD23C7D5C200A69387 /* GetVenueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFC23C7D5C200A69387 /* GetVenueRequest.swift */; };
 		EC04FCFF23C7D8A800A69387 /* GetVenueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFE23C7D8A800A69387 /* GetVenueResponse.swift */; };
 		EC04FD0123C864B800A69387 /* RestaurantDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */; };
 		EC04FD0623C89D4400A69387 /* FSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0523C89D4400A69387 /* FSAPIResponse.swift */; };
@@ -55,7 +55,7 @@
 
 /* Begin PBXFileReference section */
 		EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
-		EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRequest.swift; sourceTree = "<group>"; };
+		EC04FCFC23C7D5C200A69387 /* GetVenueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueRequest.swift; sourceTree = "<group>"; };
 		EC04FCFE23C7D8A800A69387 /* GetVenueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueResponse.swift; sourceTree = "<group>"; };
 		EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailModel.swift; sourceTree = "<group>"; };
 		EC04FD0523C89D4400A69387 /* FSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSAPIResponse.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 			children = (
 				EC123E0A23C71552008B1193 /* APIRequest.swift */,
 				EC123E2023C72BBB008B1193 /* ExploreVenuesRequest.swift */,
-				EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */,
+				EC04FCFC23C7D5C200A69387 /* GetVenueRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -356,7 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC123E1623C716E9008B1193 /* APIEndPoint.swift in Sources */,
-				EC04FCFD23C7D5C200A69387 /* VenueRequest.swift in Sources */,
+				EC04FCFD23C7D5C200A69387 /* GetVenueRequest.swift in Sources */,
 				EC123E1F23C72827008B1193 /* FSRequestAuthenticationType.swift in Sources */,
 				EC2C4D9823C75AA700059D92 /* RestaurantAnnotation.swift in Sources */,
 				EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */,

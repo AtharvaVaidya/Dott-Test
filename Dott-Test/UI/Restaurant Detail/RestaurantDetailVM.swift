@@ -163,7 +163,7 @@ class RestaurantDetailVM {
     
     //MARK:- Network Functions
     func downloadDetails() {
-        let request = VenueRequest(serviceConfig: .defaultConfig, eventID: model.venue.id)
+        let request = GetVenueRequest(serviceConfig: .defaultConfig, eventID: model.venue.id)
         
         let backgroundQueue = DispatchQueue.global(qos: .background)
         

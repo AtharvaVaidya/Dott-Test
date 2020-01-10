@@ -8,13 +8,13 @@
 
 import Foundation
 
-class VenueRequest: FSAPIRequest {
+class GetVenueRequest: FSAPIRequest {
     typealias Response = GetVenueResponse
 
     static let authenticationType: FSRequestAuthenticationType = .userless
 
     let body: Data?
-    let httpMethod: HTTPMethod
+    let httpMethod: HTTPMethod = .get
     let endPoint: APIEndPoint
     let serviceConfig: APIServiceConfig
         
@@ -25,9 +25,8 @@ class VenueRequest: FSAPIRequest {
         case v = "v"
     }
     
-    init(serviceConfig: APIServiceConfig, httpMethod: HTTPMethod = .get, body: Data? = nil, eventID: String) {
+    init(serviceConfig: APIServiceConfig, body: Data? = nil, eventID: String) {
         self.serviceConfig = serviceConfig
-        self.httpMethod = httpMethod
         self.body = body
         self.endPoint = APIEndPoints.Venues.details(eventID: eventID)
     }

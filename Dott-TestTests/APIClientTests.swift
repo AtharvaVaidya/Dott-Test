@@ -52,7 +52,7 @@ class APIClientTests: XCTestCase {
     func testGetVenueDetails() {
         let apiClient = FSAPIClient()
         
-        let exploreRequest = VenueRequest(serviceConfig: .defaultConfig,
+        let exploreRequest = GetVenueRequest(serviceConfig: .defaultConfig,
                                           eventID: "53235762498e36c1448965bf")
         
         let expectation = XCTestExpectation()
