@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - VenueResponse
-struct VenueResponse: FSAPIResponse {
+struct GetVenueResponse: FSAPIResponse {
     typealias ResponseData = Response
     
     let meta: FSAPIResponseMetadata

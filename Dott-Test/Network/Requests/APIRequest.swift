@@ -10,7 +10,10 @@ import Foundation
 
 public protocol APIRequest {
     associatedtype Response
-        
+    
+    var httpMethod: HTTPMethod { get }
+    var body: Data? { get }
+    
     func signed() -> URLRequest
 }
 

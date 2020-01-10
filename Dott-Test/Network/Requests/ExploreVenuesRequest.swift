@@ -13,6 +13,8 @@ class ExploreVenuesRequest: FSAPIRequest {
     
     static let authenticationType: FSRequestAuthenticationType = .userless
     
+    let body: Data?
+    let httpMethod: HTTPMethod
     let endPoint: APIEndPoint = APIEndPoints.Venues.explore
     let serviceConfig: APIServiceConfig
     
@@ -45,11 +47,15 @@ class ExploreVenuesRequest: FSAPIRequest {
     }
     
     init(serviceConfig: APIServiceConfig,
+         httpMethod: HTTPMethod = .get,
+         body: Data? = nil,
          section: Section,
          radius: Int,
          latitude: Float,
          longitude: Float) {
         self.serviceConfig = serviceConfig
+        self.httpMethod = httpMethod
+        self.body = body
         self.section = section
         self.radius = radius
         self.latitude = latitude
@@ -91,7 +97,14 @@ class ExploreVenuesRequest: FSAPIRequest {
             return URLRequest(url: serviceConfig.url, cachePolicy: serviceConfig.cachePolicy, timeoutInterval: serviceConfig.timeout)
         }
         
-        let request = URLRequest(url: requestURL, cachePolicy: serviceConfig.cachePolicy, timeoutInterval: serviceConfig.timeout)
+        var request = URLRequest(url: requestURL, cachePolicy: serviceConfig.cachePolicy, timeoutInterval: serviceConfig.timeout)
+        
+        serviceConfig.headers.forEach { header in
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
+        
+        request.httpMethod = httpMethod.rawValue
+        request.httpBody = nil
         
         return request
     }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC04FCFB23C7B62800A69387 /* TextHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */; };
 		EC04FCFD23C7D5C200A69387 /* VenueRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */; };
-		EC04FCFF23C7D8A800A69387 /* VenueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFE23C7D8A800A69387 /* VenueResponse.swift */; };
+		EC04FCFF23C7D8A800A69387 /* GetVenueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FCFE23C7D8A800A69387 /* GetVenueResponse.swift */; };
 		EC04FD0123C864B800A69387 /* RestaurantDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */; };
 		EC04FD0623C89D4400A69387 /* FSAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0523C89D4400A69387 /* FSAPIResponse.swift */; };
 		EC04FD0823C89E4100A69387 /* FSAPIResponseMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC04FD0723C89E4100A69387 /* FSAPIResponseMetadata.swift */; };
@@ -38,6 +38,7 @@
 		EC123E2523C73B83008B1193 /* RestaurantsMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */; };
 		EC123E2723C73C9C008B1193 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC123E2623C73C9C008B1193 /* Venue.swift */; };
 		EC2C4D9823C75AA700059D92 /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */; };
+		EC60AC6F23C8B140000B7CAD /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60AC6E23C8B140000B7CAD /* HTTPMethod.swift */; };
 		EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */; };
 		EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */; };
 		EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */; };
@@ -63,7 +64,7 @@
 /* Begin PBXFileReference section */
 		EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHeaderView.swift; sourceTree = "<group>"; };
 		EC04FCFC23C7D5C200A69387 /* VenueRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueRequest.swift; sourceTree = "<group>"; };
-		EC04FCFE23C7D8A800A69387 /* VenueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueResponse.swift; sourceTree = "<group>"; };
+		EC04FCFE23C7D8A800A69387 /* GetVenueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVenueResponse.swift; sourceTree = "<group>"; };
 		EC04FD0023C864B800A69387 /* RestaurantDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailModel.swift; sourceTree = "<group>"; };
 		EC04FD0523C89D4400A69387 /* FSAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSAPIResponse.swift; sourceTree = "<group>"; };
 		EC04FD0723C89E4100A69387 /* FSAPIResponseMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSAPIResponseMetadata.swift; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 		EC123E2423C73B83008B1193 /* RestaurantsMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsMapModel.swift; sourceTree = "<group>"; };
 		EC123E2623C73C9C008B1193 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
+		EC60AC6E23C8B140000B7CAD /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVM.swift; sourceTree = "<group>"; };
 		EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 				EC04FD0523C89D4400A69387 /* FSAPIResponse.swift */,
 				EC04FD0723C89E4100A69387 /* FSAPIResponseMetadata.swift */,
 				EC123E0823C712DE008B1193 /* ExploreVenuesResponse.swift */,
-				EC04FCFE23C7D8A800A69387 /* VenueResponse.swift */,
+				EC04FCFE23C7D8A800A69387 /* GetVenueResponse.swift */,
 				EC04FD0923C8A22E00A69387 /* ErrorResponse.swift */,
 			);
 			path = Response;
@@ -222,6 +224,7 @@
 				EC123E1923C722C9008B1193 /* APICredentials.swift */,
 				EC123E1323C71655008B1193 /* NetworkingAliases.swift */,
 				EC123E0E23C715EF008B1193 /* NetworkError.swift */,
+				EC60AC6E23C8B140000B7CAD /* HTTPMethod.swift */,
 				EC04FD0323C89CD900A69387 /* Response */,
 				EC04FD0223C89CCB00A69387 /* Requests */,
 				EC04FD0423C89D0700A69387 /* API Client */,
@@ -417,6 +420,7 @@
 				EC123E0F23C715EF008B1193 /* NetworkError.swift in Sources */,
 				EC123E2323C7367C008B1193 /* LocationManager.swift in Sources */,
 				EC123E2523C73B83008B1193 /* RestaurantsMapModel.swift in Sources */,
+				EC60AC6F23C8B140000B7CAD /* HTTPMethod.swift in Sources */,
 				EC123E1423C71655008B1193 /* NetworkingAliases.swift in Sources */,
 				EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */,
 				EC123E0D23C715C2008B1193 /* FSAPIClient.swift in Sources */,
@@ -435,7 +439,7 @@
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
 				EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */,
 				EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */,
-				EC04FCFF23C7D8A800A69387 /* VenueResponse.swift in Sources */,
+				EC04FCFF23C7D8A800A69387 /* GetVenueResponse.swift in Sources */,
 				EC123E0923C712DE008B1193 /* ExploreVenuesResponse.swift in Sources */,
 				EC123E2123C72BBB008B1193 /* ExploreVenuesRequest.swift in Sources */,
 			);

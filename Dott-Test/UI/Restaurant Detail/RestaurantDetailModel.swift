@@ -9,7 +9,7 @@
 import Foundation
 
 class RestaurantDetailModel {
-    typealias VenueDetails = VenueResponse.VenueDetails
+    typealias VenueDetails = GetVenueResponse.VenueDetails
     
     let venue: Venue
     @Published var details: VenueDetails?

@@ -10,11 +10,13 @@ import MapKit
 import Combine
 
 class RestaurantDetailVM {
-    typealias VenueDetails = VenueResponse.VenueDetails
+    typealias VenueDetails = GetVenueResponse.VenueDetails
     
     private let model: RestaurantDetailModel
     private let apiClient = FSAPIClient()
     private let headers: [String] = ["Address", "Categories"]
+    
+    ///Headers for the details of a restaurant/venue.
     private let detailHeaders: [String] = ["Contact Information", "Hours", "Rating"]
     
     private var cancellables: Set<AnyCancellable> = []
