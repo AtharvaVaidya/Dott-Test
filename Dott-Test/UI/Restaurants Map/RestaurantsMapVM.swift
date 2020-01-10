@@ -50,6 +50,7 @@ class RestaurantsMapVM: ObservableObject {
         
         apiClient.send(request: restaurantsRequest)
         .receive(on: backgroundQueue)
+        .replaceError(with: ExploreVenuesResponse.empty)
         .sink(receiveCompletion: { (result) in
             switch result {
             case .failure(let error):

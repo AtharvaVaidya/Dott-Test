@@ -21,7 +21,6 @@ struct ExploreVenuesResponse: FSAPIResponse {
         let suggestedRadius: Int?
         let headerLocation, headerFullLocation, headerLocationGranularity: String
         let totalResults: Int
-        let suggestedBounds: SuggestedBounds
         let groups: [Group]
     }
 
@@ -33,24 +32,7 @@ struct ExploreVenuesResponse: FSAPIResponse {
 
     // MARK: - GroupItem
     struct GroupItem: Codable {
-        let reasons: Reasons
         let venue: Venue
-    }
-
-    // MARK: - Reasons
-    struct Reasons: Codable {
-        let count: Int
-        let items: [ReasonsItem]
-    }
-
-    // MARK: - ReasonsItem
-    struct ReasonsItem: Codable {
-        let summary, type, reasonName: String
-    }
-
-    // MARK: - SuggestedBounds
-    struct SuggestedBounds: Codable {
-        let ne, sw: Ne
     }
 
     // MARK: - Ne
@@ -64,3 +46,8 @@ struct ExploreVenuesResponse: FSAPIResponse {
     }
 }
 
+extension ExploreVenuesResponse {
+    static var empty: ExploreVenuesResponse {
+        return ExploreVenuesResponse(meta: FSAPIResponseMetadata(code: 404, requestID: nil), response: nil)
+    }
+}

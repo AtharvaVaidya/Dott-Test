@@ -19,6 +19,7 @@ class FSAPIClient: APIClient {
         let urlRequest = request.signed()
         
         let publisher = URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .retry(5)
             .tryMap({ (data, response) -> Data in
                 guard let response = response as? HTTPURLResponse else {
                     throw NetworkError.badResponse
