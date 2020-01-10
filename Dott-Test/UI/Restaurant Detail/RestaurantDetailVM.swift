@@ -175,7 +175,7 @@ class RestaurantDetailVM {
                 print("Finished downloading details")
             }
         }) { [weak model] (response) in
-            model?.details = response.response.venue
+            model?.details = response.response?.venue
         }
         .store(in: &cancellables)
     }

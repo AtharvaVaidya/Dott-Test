@@ -67,14 +67,14 @@ class ExploreVenuesRequest: FSAPIRequest {
         let coordinatesItem = URLQueryItem(name: QueryItems.ll.rawValue, value: coordinates)
         let clientIDItem = URLQueryItem(name: QueryItems.clientID.rawValue, value: apiKey)
         let clientSecretItem = URLQueryItem(name: QueryItems.clientSecret.rawValue, value: apiSecret)
-        let versionItem = URLQueryItem(name: QueryItems.v.rawValue, value: version)
+//        let versionItem = URLQueryItem(name: QueryItems.v.rawValue, value: version)
         let radiusItem = URLQueryItem(name: QueryItems.radius.rawValue, value: "\(radius)")
         
         var items = [coordinatesItem,
                      radiusItem,
                      clientIDItem,
-                     clientSecretItem,
-                     versionItem]
+                     clientSecretItem]
+//                     versionItem]
         
         if let section = self.section {
             let sectionItem = URLQueryItem(name: QueryItems.section.rawValue, value: section.rawValue)

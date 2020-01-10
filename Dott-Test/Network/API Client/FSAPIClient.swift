@@ -21,12 +21,10 @@ class FSAPIClient: APIClient {
         let publisher = URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryMap({ (data, response) -> Data in
                 guard let response = response as? HTTPURLResponse else {
-                    print("Bad status code")
                     throw NetworkError.badResponse
                 }
                 
                 if response.statusCode != 200 {
-                    print("Status code: \(response.statusCode)")
                     throw NetworkError.badStatusCode
                 }
                 
@@ -47,28 +45,23 @@ class FSAPIClient: APIClient {
             .retry(5)
             .tryMap { (data, response) -> Data in
                 guard let response = response as? HTTPURLResponse else {
-                    print("Bad status code")
                     throw NetworkError.badResponse
                 }
                 
                 if response.statusCode != 200 {
-                    print("Status code: \(response.statusCode)")
-                    print("Response: \(String(data: data, encoding: .utf8) ?? "")")
-                    throw NetworkError.badStatusCode
+                    let errorResponse = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                    
+                    throw NetworkError.error(errorResponse.meta.errorDetail)
                 }
                 
                 return data
             }
             .decode(type: T.Response.self, decoder: JSONDecoder())
-            .tryMap({ (response) -> T.Response in
-                guard response.meta.code == 200 else {
-                    throw NetworkError.badStatusCode
+            .mapError { (error) -> NetworkError in
+                if let networkError = error as? NetworkError {
+                    return networkError
                 }
                 
-                return response
-            })
-            .mapError { (error) -> NetworkError in
-                print("Error decodeing JSON: \((error as NSError).userInfo)")
                 return NetworkError.failedToParseJSONData
             }
             .eraseToAnyPublisher()

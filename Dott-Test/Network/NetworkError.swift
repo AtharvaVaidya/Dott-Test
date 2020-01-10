@@ -11,6 +11,7 @@ import Foundation
 /// Possible networking errors
 enum NetworkError: Error {
     case badResponse
+    case error(String)
     case badStatusCode
     case failedToParseJSONData
 }
@@ -24,6 +25,8 @@ extension NetworkError {
             return "Bad Status Code"
         case .failedToParseJSONData:
             return "Failed to parse JSON"
+        case .error(let error):
+            return error
         }
     }
 }

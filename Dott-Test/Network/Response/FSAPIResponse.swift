@@ -12,5 +12,5 @@ public protocol FSAPIResponse: Codable {
     associatedtype ResponseData: Codable
     
     var meta: FSAPIResponseMetadata { get }
-    var response: ResponseData { get }
+    var response: ResponseData? { get }
 }

@@ -57,7 +57,11 @@ class RestaurantsMapVM: ObservableObject {
                 print("Downloaded all restaurants")
             }
         }) { (response) in
-            let allVenues = (response.response.groups.map{ group -> [Venue] in
+            guard let groups = response.response?.groups else {
+                return
+            }
+            
+            let allVenues = (groups.map{ group -> [Venue] in
                 return group.items.compactMap({ $0.venue })
             })
             .joined()

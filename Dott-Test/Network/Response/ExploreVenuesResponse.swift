@@ -13,7 +13,7 @@ struct ExploreVenuesResponse: FSAPIResponse {
     typealias ResponseData = Response
     
     let meta: FSAPIResponseMetadata
-    let response: Response
+    let response: Response?
 
     // MARK: - Response
     struct Response: Codable {
