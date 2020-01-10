@@ -76,7 +76,6 @@ class RestaurantDetailVM {
                 print("Error: \(error.localizedDescription)")
             case .finished:
                 print("Finished downloading details")
-                print("Details: \(self.model.details)")
             }
         }) { [weak model] (response) in
             model?.details = response.response.venue

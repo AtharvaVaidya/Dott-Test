@@ -44,7 +44,6 @@ struct VenueResponse: Codable {
         let shortURL: String?
         let timeZone: String?
         let hours: Hours?
-        let bestPhoto: BestPhoto?
 
         enum CodingKeys: String, CodingKey {
             case id, name, contact, location
@@ -53,31 +52,8 @@ struct VenueResponse: Codable {
             case venueDescription
             case page
             case shortURL
-            case timeZone, hours, bestPhoto
+            case timeZone, hours
         }
-    }
-
-    // MARK: - BestPhoto
-    struct BestPhoto: Codable {
-        let id: String
-        let createdAt: Int
-        let source: Source?
-        let bestPhotoPrefix: String?
-        let suffix: String?
-        let width, height: Int?
-        let visibility: String?
-
-        enum CodingKeys: String, CodingKey {
-            case id, createdAt, source
-            case bestPhotoPrefix
-            case suffix, width, height, visibility
-        }
-    }
-
-    // MARK: - Source
-    struct Source: Codable {
-        let name: String
-        let url: String
     }
 
     // MARK: - Category
