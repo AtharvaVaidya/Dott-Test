@@ -9,12 +9,12 @@
 import Foundation
 import Combine
 
-protocol APIClientProtocol {
+protocol APIClient {
     func send<T: APIRequest>(request: T) -> AnyPublisher<Data, NetworkError>
-    func send<T: APIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> where T.Response: Codable
+    func send<T: FSAPIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError>
 }
 
-class FSAPIClient: APIClientProtocol {
+class FSAPIClient: APIClient {
     func send<T: APIRequest>(request: T) -> AnyPublisher<Data, NetworkError> {
         let urlRequest = request.signed()
         
@@ -40,7 +40,7 @@ class FSAPIClient: APIClientProtocol {
         return publisher
     }
     
-    func send<T: APIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> where T.Response: Codable {
+    func send<T: FSAPIRequest>(request: T) -> AnyPublisher<T.Response, NetworkError> {
         let urlRequest = request.signed()
         
         let publisher = URLSession.shared.dataTaskPublisher(for: urlRequest)
@@ -60,6 +60,13 @@ class FSAPIClient: APIClientProtocol {
                 return data
             }
             .decode(type: T.Response.self, decoder: JSONDecoder())
+            .tryMap({ (response) -> T.Response in
+                guard response.meta.code == 200 else {
+                    throw NetworkError.badStatusCode
+                }
+                
+                return response
+            })
             .mapError { (error) -> NetworkError in
                 print("Error decodeing JSON: \((error as NSError).userInfo)")
                 return NetworkError.failedToParseJSONData

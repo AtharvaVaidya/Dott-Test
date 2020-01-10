@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Meta
-struct FSAPIResponseMetadata: Codable {
+public struct FSAPIResponseMetadata: Codable {
     let code: Int
     let requestID: String?
 

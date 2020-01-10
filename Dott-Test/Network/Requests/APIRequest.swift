@@ -14,7 +14,7 @@ public protocol APIRequest {
     func signed() -> URLRequest
 }
 
-public protocol FSAPIRequest: APIRequest where Response: Codable {
+public protocol FSAPIRequest: APIRequest where Response: FSAPIResponse {
     var endPoint: APIEndPoint { get }
     static var authenticationType: FSRequestAuthenticationType { get }
     var serviceConfig: APIServiceConfig { get }

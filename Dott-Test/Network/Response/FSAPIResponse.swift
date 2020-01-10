@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol FSAPIResponse: Codable {
+public protocol FSAPIResponse: Codable {
     associatedtype ResponseData: Codable
     
     var meta: FSAPIResponseMetadata { get }
