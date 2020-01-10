@@ -40,7 +40,6 @@
 		EC60AC7123C8E57C000B7CAD /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60AC7023C8E57C000B7CAD /* APIClientTests.swift */; };
 		EC9C50C823C7AA23008B6B75 /* RestaurantDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */; };
 		EC9C50CA23C7AB38008B6B75 /* RestaurantDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */; };
-		EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +91,6 @@
 		EC60AC7223C8EBAC000B7CAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVM.swift; sourceTree = "<group>"; };
-		EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				EC04FCFA23C7B62800A69387 /* TextHeaderView.swift */,
-				EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */,
 			);
 			path = "Generic Components";
 			sourceTree = "<group>";
@@ -379,7 +376,6 @@
 				EC123E1A23C722C9008B1193 /* APICredentials.swift in Sources */,
 				EC123E2723C73C9C008B1193 /* Venue.swift in Sources */,
 				EC123DD823C7107F008B1193 /* SceneDelegate.swift in Sources */,
-				EC9C50CE23C7B2BE008B6B75 /* UIColor+Convenience.swift in Sources */,
 				EC123E0B23C71552008B1193 /* APIRequest.swift in Sources */,
 				EC04FCFF23C7D8A800A69387 /* GetVenueResponse.swift in Sources */,
 				EC123E0923C712DE008B1193 /* ExploreVenuesResponse.swift in Sources */,
