@@ -16,6 +16,6 @@ protocol Credentials {
 // We are storing the API credentials in plain-text. For more info on why I have done this please read this article. https://nshipster.com/secrets/
 /// API Client Credentials for Foursquare
 struct FSAPICredentials: Credentials {
-    static let apiKey = "5PUVNO5GQM2FTHS5PSZX3KM4JMNSLLTN3IRTHYQA0VTKUHOW"
-    static let apiSecret = "Z142HYBS5PMAP00DEG4JKYEKJEESJSQYY4PR2STBRBVQO3FT"
+    static let apiKey = "3542X1VTSY440WPXIZ2XSWDB2JSTZON3AZHWG0A4KDSTJYAC"
+    static let apiSecret = "1GROI4NX53CDRKMOGLE5GE1K2X4BGRHLH1LQ24GSXLIANHWN"
 }

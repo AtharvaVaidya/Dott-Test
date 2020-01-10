@@ -49,45 +49,52 @@ class RestaurantsMapVC: UIViewController {
     }
     
     private func setupBindings() {
-        viewModel.subscribeToModel()
-        .receive(on: RunLoop.main)
-        .sink { [weak self] (venues) in
-            self?.redrawMap()
-        }
-        .store(in: &cancellables)
-        
-        let backgroundQueue = DispatchQueue.global(qos: .default)
-        
-        $currentMapCentre
-        .drop(untilOutputFrom: viewModel.subscribeToModel())
-        .dropFirst()
-        //We wait for the user to stay in a place for one second before firing a network request because the user might be moving the map a lot.
-        .debounce(for: 1, scheduler: backgroundQueue)
-        .removeDuplicates(by: { (lhs, rhs) -> Bool in
-            //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
-            let marginOfError = (1 / 60.0) / 60.0
-            
-            let latitudeDelta = fabs(lhs.latitude - rhs.latitude)
-            let longitudeDelta = fabs(lhs.longitude - rhs.longitude)
-            
-            let isDuplicate = latitudeDelta < marginOfError && longitudeDelta < marginOfError
-            
-            return isDuplicate
-        })
-        .receive(on: RunLoop.main)
-        .sink { [weak self] _ in
-            guard let self = self, let mapView = self.mapView else {
-                return
+        func subscribeToModel() {
+            viewModel.subscribeToModel()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (venues) in
+                self?.redrawMap()
             }
-            self.viewModel.downloadRestaurantsFor(view: mapView)
+            .store(in: &cancellables)
         }
-        .store(in: &cancellables)
+
+        func subscribeToCameraChanges() {
+            let backgroundQueue = DispatchQueue.global(qos: .default)
+            
+            $currentMapCentre
+            .drop(untilOutputFrom: viewModel.subscribeToModel())
+            .dropFirst()
+            //We wait for the user to stay in a place for one second before firing a network request because the user might be moving the map a lot.
+            .debounce(for: 1, scheduler: backgroundQueue)
+            .removeDuplicates(by: { (lhs, rhs) -> Bool in
+                //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
+                let marginOfError = (1 / 60.0) / 60.0
+                
+                let latitudeDelta = fabs(lhs.latitude - rhs.latitude)
+                let longitudeDelta = fabs(lhs.longitude - rhs.longitude)
+                
+                let isDuplicate = latitudeDelta < marginOfError && longitudeDelta < marginOfError
+                
+                return isDuplicate
+            })
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self = self, let mapView = self.mapView else {
+                    return
+                }
+                self.viewModel.downloadRestaurantsFor(view: mapView)
+            }
+            .store(in: &cancellables)
+        }
+        
+        subscribeToModel()
+        subscribeToCameraChanges()
     }
     
     //MARK:- MapView Methods
     private func setupMap() {
         mapView.delegate = self
-        mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
+//        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
         mapView.camera.centerCoordinateDistance = defaultCameraDistance
         updateMap(currentLocation: viewModel.currentLocation)
     }
@@ -122,7 +129,7 @@ extension RestaurantsMapVC: MKMapViewDelegate {
             return nil
         }
         
-        let identifier = "marker"
+        let identifier = RestaurantAnnotation.identifier
         var view: MKMarkerAnnotationView
         
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
