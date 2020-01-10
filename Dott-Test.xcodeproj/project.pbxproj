@@ -89,6 +89,7 @@
 		EC2C4D9723C75AA700059D92 /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
 		EC60AC6E23C8B140000B7CAD /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		EC60AC7023C8E57C000B7CAD /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		EC60AC7223C8EBAC000B7CAD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC9C50C723C7AA23008B6B75 /* RestaurantDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVC.swift; sourceTree = "<group>"; };
 		EC9C50C923C7AB38008B6B75 /* RestaurantDetailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailVM.swift; sourceTree = "<group>"; };
 		EC9C50CD23C7B2BE008B6B75 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		EC123DC923C7107F008B1193 = {
 			isa = PBXGroup;
 			children = (
+				EC60AC7223C8EBAC000B7CAD /* README.md */,
 				EC123DD423C7107F008B1193 /* Dott-Test */,
 				EC123DEE23C71081008B1193 /* Dott-TestTests */,
 				EC123DD323C7107F008B1193 /* Products */,
