@@ -40,9 +40,7 @@ class RestaurantsMapVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel.requestLocationPermissionIfNeeded()
-        viewModel.downloadRestaurantsForCurrentLocation()
-        
+        fetchData()
         setupBindings()
         setupMap()
         setupColors()
@@ -82,7 +80,7 @@ class RestaurantsMapVC: UIViewController {
                 guard let self = self, let mapView = self.mapView else {
                     return
                 }
-                self.viewModel.downloadRestaurantsFor(view: mapView)
+                self.viewModel.changedPositionFor(camera: mapView)
             }
             .store(in: &cancellables)
         }
@@ -91,10 +89,13 @@ class RestaurantsMapVC: UIViewController {
         subscribeToCameraChanges()
     }
     
+    func fetchData() {
+        viewModel.downloadRestaurantsForCurrentLocation()
+    }
+    
     //MARK:- MapView Methods
     private func setupMap() {
         mapView.delegate = self
-//        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
         mapView.camera.centerCoordinateDistance = defaultCameraDistance
         updateMap(currentLocation: viewModel.currentLocation)
     }

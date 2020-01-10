@@ -17,7 +17,7 @@ class RestaurantsMapVM: ObservableObject {
     private var model = RestaurantsMapModel()
     
     private var cancellables: Set<AnyCancellable> = []
-    
+        
     init() {
         requestLocationPermissionIfNeeded()
     }
@@ -77,14 +77,14 @@ class RestaurantsMapVM: ObservableObject {
             return
         }
         
-        downloadRestaurants(for: coordinates, radius: 5000)
+        downloadRestaurants(for: coordinates, radius: 3000)
     }
     
-    func downloadRestaurantsFor(view: MKMapView) {
-        let center = view.centerCoordinate
+    func changedPositionFor(camera: MKMapView) {
+        let center = camera.centerCoordinate
         
         //The radius is calculated by multiplying the degrees by 111,000. Each degree of latitude is approximately 69 miles (111 kilometers) apart.
-        let radiusInDegrees = (view.region.span.longitudeDelta + view.region.span.latitudeDelta) / 2
+        let radiusInDegrees = (camera.region.span.longitudeDelta + camera.region.span.latitudeDelta) / 2
         let radius = Int(radiusInDegrees * 111 * 1000)
         
         //We ignore the request if the radius of the map is more than 5000 metres.

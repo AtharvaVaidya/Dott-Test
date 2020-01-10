@@ -18,7 +18,7 @@ class LocationManager: NSObject {
     }
     
     var currentCoordinates: CLLocationCoordinate2D? {
-        return locationManager.location?.coordinate
+        return currentLocation?.coordinate
     }
     
     @Published var currentLocation: CLLocation?
@@ -69,6 +69,14 @@ extension LocationManager: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else {
+            return
+        }
+        
+        guard location.horizontalAccuracy < 50 else {
+            return
+        }
+        
         currentLocation = manager.location
     }    
 }
