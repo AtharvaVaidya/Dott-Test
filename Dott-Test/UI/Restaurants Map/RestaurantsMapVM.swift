@@ -95,7 +95,7 @@ class RestaurantsMapVM {
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
             case .finished:
-                print("Downloaded all restaurants")
+                break
             }
         }) { (response) in
             guard let groups = response.response?.groups else {

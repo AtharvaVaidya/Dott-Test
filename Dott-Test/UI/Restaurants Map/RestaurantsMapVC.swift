@@ -260,7 +260,7 @@ extension RestaurantsMapVC: MKMapViewDelegate {
 
 
 fileprivate extension CLLocationCoordinate2D {
-    /// Returns true if both the location's are close enough to a arcsecond.
+    /// Returns true if both the location's are close enough to an arcsecond.
     static func ~=(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
         //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
         let marginOfError = (1 / 60.0) / 60.0

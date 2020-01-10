@@ -14,6 +14,14 @@ struct ExploreVenuesResponse: FSAPIResponse {
     
     let meta: FSAPIResponseMetadata
     let response: Response?
+    
+    var allVenues: [Venue]? {
+        if let response = response {
+            return Array(response.groups.map({ $0.items.map({ $0.venue }) }).joined())
+        }
+        
+        return nil
+    }
 
     // MARK: - Response
     struct Response: Codable {
