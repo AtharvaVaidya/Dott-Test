@@ -62,62 +62,91 @@ class RestaurantDetailVM {
         return detailHeaders[index]
     }
     
-    func valueForCell(at indexPath: IndexPath) -> String {
-        let restaurant = model.venue
-                
+    func valueForCell(at indexPath: IndexPath) -> String {                
         switch indexPath.section {
         case 0:
-            return restaurant.location.formattedAddress?.joined(separator: "\n") ?? (restaurant.location.address ?? "")
+            return formattedAddress()
         case 1:
-            return restaurant.categories.map({ $0.name }).joined(separator: ", ")
+            return formattedCategories()
         default:
             break
         }
         
-        guard let details = model.details else {
+        guard let _ = model.details else {
             return ""
         }
         
         switch indexPath.section {
         case 2:
-            return details.contact.formattedPhone ?? "—"
+            return formattedContactInfo()
         case 3:
-            guard let timeframes = details.hours?.timeframes else {
-                return ""
-            }
-            
-            let daysOpen
-                = timeframes
-                .compactMap({ $0.days })
-                .joined(separator: ", ")
-            
-            let hours
-                = timeframes
-                    .compactMap({
-                        $0.timeframeOpen?
-                            .compactMap({ $0.renderedTime })
-                            .joined(separator: ", ")
-                    })
-                    .joined(separator: "\n")
-            
-            if daysOpen.isEmpty && hours.isEmpty {
-                return "—"
-            }
-            
-            if hours.isEmpty {
-                return "\(daysOpen)"
-            } else {
-                return "\(daysOpen)\n\(hours)"
-            }
-            
+            return formattedHours()
         case 4:
-            guard let rating = details.rating else {
-                return "—"
-            }
-            
-            return "\(rating) out of 10"
+            return formattedRating()
         default:
             return ""
+        }
+    }
+    
+    func formattedAddress() -> String {
+        let restaurant = model.venue
+        
+        if let formattedAddress = restaurant.location.formattedAddress {
+            return formattedAddress.joined(separator: "\n")
+        }
+        
+        return restaurant.location.address ?? ""
+    }
+    
+    func formattedCategories() -> String {
+        let restaurant = model.venue
+        
+        return
+            restaurant
+            .categories
+                .map({ $0.name })
+                .joined(separator: ", ")
+    }
+    
+    func formattedContactInfo() -> String {
+        return model.details?.contact.formattedPhone ?? "—"
+    }
+    
+    func formattedRating() -> String {
+        guard let rating = model.details?.rating else {
+            return "—"
+        }
+        
+        return "\(rating) out of 10"
+    }
+    
+    func formattedHours() -> String {
+        guard let timeframes = model.details?.hours?.timeframes else {
+            return ""
+        }
+        
+        let daysOpen
+            = timeframes
+                .compactMap({ $0.days })
+                .joined(separator: ", ")
+        
+        let hours
+            = timeframes
+                .compactMap({
+                    $0.timeframeOpen?
+                        .compactMap({ $0.renderedTime })
+                        .joined(separator: ", ")
+                })
+                .joined(separator: "\n")
+        
+        if daysOpen.isEmpty && hours.isEmpty {
+            return "—"
+        }
+        
+        if hours.isEmpty {
+            return "\(daysOpen)"
+        } else {
+            return "\(daysOpen)\n\(hours)"
         }
     }
     
