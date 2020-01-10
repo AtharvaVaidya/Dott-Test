@@ -13,5 +13,17 @@ enum NetworkError: Error {
     case badResponse
     case badStatusCode
     case failedToParseJSONData
-    case failedToParseImageData(_: Data)
+}
+
+extension NetworkError {
+    var localizedDescription: String {
+        switch self {
+        case .badResponse:
+            return "Bad Response"
+        case .badStatusCode:
+            return "Bad Status Code"
+        case .failedToParseJSONData:
+            return "Failed to parse JSON"
+        }
+    }
 }
