@@ -13,6 +13,9 @@ import Combine
 class RestaurantsMapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
+    /// The distance from the ground level to the camera in metres
+    private let defaultCameraDistance: CLLocationDistance = 10_000
+    
     private var viewModel: RestaurantsMapVM
     
     private var cancellables: Set<AnyCancellable> = []
@@ -53,10 +56,25 @@ class RestaurantsMapVC: UIViewController {
         }
         .store(in: &cancellables)
         
+        let backgroundQueue = DispatchQueue.global(qos: .default)
+        
         $currentMapCentre
         .drop(untilOutputFrom: viewModel.subscribeToModel())
         .dropFirst()
-        .debounce(for: 1, scheduler: RunLoop.main)
+        //We wait for the user to stay in a place for one second before firing a network request because the user might be moving the map a lot.
+        .debounce(for: 1, scheduler: backgroundQueue)
+        .removeDuplicates(by: { (lhs, rhs) -> Bool in
+            //Making sure we don't send another request for an area that is roughly the same by checking if the last location is within a "second" of the last one.
+            let marginOfError = (1 / 60.0) / 60.0
+            
+            let latitudeDelta = fabs(lhs.latitude - rhs.latitude)
+            let longitudeDelta = fabs(lhs.longitude - rhs.longitude)
+            
+            let isDuplicate = latitudeDelta < marginOfError && longitudeDelta < marginOfError
+            
+            return isDuplicate
+        })
+        .receive(on: RunLoop.main)
         .sink { [weak self] _ in
             guard let self = self, let mapView = self.mapView else {
                 return
@@ -70,7 +88,7 @@ class RestaurantsMapVC: UIViewController {
     private func setupMap() {
         mapView.delegate = self
         mapView.register(RestaurantAnnotation.self, forAnnotationViewWithReuseIdentifier: RestaurantAnnotation.identifier)
-        mapView.camera.centerCoordinateDistance = 10000
+        mapView.camera.centerCoordinateDistance = defaultCameraDistance
         updateMap(currentLocation: viewModel.currentLocation)
     }
     

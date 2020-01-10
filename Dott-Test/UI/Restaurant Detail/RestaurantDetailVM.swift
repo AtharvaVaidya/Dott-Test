@@ -62,7 +62,7 @@ class RestaurantDetailVM {
         return detailHeaders[index]
     }
     
-    func valueForCell(at indexPath: IndexPath) -> String {                
+    func valueForCell(at indexPath: IndexPath) -> String {
         switch indexPath.section {
         case 0:
             return formattedAddress()
@@ -88,6 +88,7 @@ class RestaurantDetailVM {
         }
     }
     
+    //MARK:- Data Formatting Methods
     func formattedAddress() -> String {
         let restaurant = model.venue
         
