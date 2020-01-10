@@ -9,20 +9,11 @@
 import Foundation
 
 // MARK: - VenueResponse
-struct VenueResponse: Codable {
-    let meta: Meta
-    let response: Response
+struct VenueResponse: FSAPIResponse {
+    typealias ResponseData = Response
     
-    // MARK: - Meta
-    struct Meta: Codable {
-        let code: Int
-        let requestID: String?
-
-        enum CodingKeys: String, CodingKey {
-            case code
-            case requestID
-        }
-    }
+    let meta: FSAPIResponseMetadata
+    let response: Response
 
     // MARK: - Response
     struct Response: Codable {
